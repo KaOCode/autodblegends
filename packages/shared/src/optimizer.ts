@@ -1,0 +1,207 @@
+import type {
+  BuiltTeam,
+  Character,
+  InventoryEntry,
+  SupportItem,
+  TeamMode,
+} from "./types.js";
+
+/**
+ * Heuristic team optimizer.
+ *
+ * There is no official DBL API exposing "meta strength" or exact leader-skill
+ * targeting rules, so this scores teams from data we actually have (rarity,
+ * stats, shared tags/traits, ability text keywords) instead of a hardcoded
+ * tier list. Treat the score as a relative ranking aid, not ground truth -
+ * the weights in SCORING_WEIGHTS are tuned by feel and meant to be adjusted.
+ */
+
+const TEAM_SIZE = 7;
+const LEADER_CANDIDATE_POOL = 15;
+
+const RARITY_WEIGHT: Record<string, number> = {
+  LEGEND: 5,
+  ULTRA: 4,
+  SPARKING: 3,
+  EXTREME: 2,
+  HERO: 1,
+};
+
+const SCORING_WEIGHTS = {
+  statBase: 1 / 20000, // normalizes raw stat sums into a small number
+  rarity: 8,
+  zenkai: 6,
+  legendsLimited: 4,
+  starLevel: 3, // per star, 1-7
+  sharedTagWithLeader: 10,
+  sharedTraitWithLeader: 4,
+  colorDiversityBonus: 3,
+  modeKeywordMatch: 6,
+  eventTagMatch: 20,
+};
+
+const MODE_KEYWORDS: Record<TeamMode, string[]> = {
+  pvp: ["damage guard", "nullify", "endurance", "switch gauge", "ki recovery"],
+  raid: ["damage +", "critical", "arts damage", "blast atk", "strike atk"],
+  event: ["health restoration", "damage +", "ki +"],
+};
+
+export interface OwnedCharacter {
+  character: Character;
+  inventory: InventoryEntry;
+}
+
+export interface BuildTeamOptions {
+  mode: TeamMode;
+  owned: OwnedCharacter[];
+  /** e.g. a CHOICE event's required tag name, matched loosely against character tags */
+  eventTagHint?: string;
+}
+
+function baseScore(entry: OwnedCharacter): number {
+  const { character: c, inventory: inv } = entry;
+  const statSum =
+    c.statsMax.hp * 0.4 +
+    c.statsMax.strikeAtk +
+    c.statsMax.blastAtk +
+    c.statsMax.strikeDef * 0.5 +
+    c.statsMax.blastDef * 0.5;
+
+  let score = statSum * SCORING_WEIGHTS.statBase;
+  score += (RARITY_WEIGHT[c.rarity] ?? 1) * SCORING_WEIGHTS.rarity;
+  if (c.isZenkai) score += SCORING_WEIGHTS.zenkai;
+  if (c.isLegendsLimited) score += SCORING_WEIGHTS.legendsLimited;
+  score += Math.min(inv.stars, 7) * SCORING_WEIGHTS.starLevel;
+  return score;
+}
+
+function sharedCount(a: string[], b: string[]): number {
+  const setB = new Set(b.map((s) => s.toLowerCase()));
+  return a.reduce((n, tag) => n + (setB.has(tag.toLowerCase()) ? 1 : 0), 0);
+}
+
+function abilityKeywordScore(c: Character, keywords: string[]): number {
+  const haystack = [
+    c.mainAbility?.body ?? "",
+    ...c.zAbilities.map((z) => z.body),
+  ]
+    .join(" ")
+    .toLowerCase();
+  return keywords.reduce((n, kw) => n + (haystack.includes(kw) ? 1 : 0), 0);
+}
+
+function synergyScore(
+  candidate: OwnedCharacter,
+  leader: OwnedCharacter,
+  mode: TeamMode,
+  eventTagHint?: string,
+): { score: number; reasons: string[] } {
+  const reasons: string[] = [];
+  let score = 0;
+
+  const sharedTags = sharedCount(candidate.character.tags, leader.character.tags);
+  if (sharedTags > 0) {
+    score += sharedTags * SCORING_WEIGHTS.sharedTagWithLeader;
+    reasons.push(`teilt ${sharedTags} Tag(s) mit Leader ${leader.character.name}`);
+  }
+
+  const sharedTraits = sharedCount(candidate.character.traits, leader.character.traits);
+  if (sharedTraits > 0) {
+    score += sharedTraits * SCORING_WEIGHTS.sharedTraitWithLeader;
+  }
+
+  const keywordHits = abilityKeywordScore(candidate.character, MODE_KEYWORDS[mode]);
+  if (keywordHits > 0) {
+    score += keywordHits * SCORING_WEIGHTS.modeKeywordMatch;
+    reasons.push(`${keywordHits} passende Fähigkeit(en) für Modus "${mode}"`);
+  }
+
+  if (eventTagHint) {
+    const hint = eventTagHint.toLowerCase();
+    const matches = candidate.character.tags.some((t) => t.toLowerCase().includes(hint));
+    if (matches) {
+      score += SCORING_WEIGHTS.eventTagMatch;
+      reasons.push(`Tag passt zum Event-Hinweis "${eventTagHint}"`);
+    }
+  }
+
+  return { score, reasons };
+}
+
+function colorDiversity(team: OwnedCharacter[]): number {
+  const colors = new Set(team.map((t) => t.character.color));
+  return colors.size * SCORING_WEIGHTS.colorDiversityBonus;
+}
+
+const SUPPORT_ITEM_CATALOG: SupportItem[] = [
+  { id: "ki-recovery", name: "Ki Recovery Support", effectSummary: "Erhöht Ki-Regeneration zu Rundenbeginn" },
+  { id: "damage-guard", name: "Damage Guard Support", effectSummary: "Reduziert erhaltenen Schaden für die ersten Runden" },
+  { id: "strike-boost", name: "Strike ATK Support", effectSummary: "Erhöht Strike-Schaden des Teams" },
+  { id: "blast-boost", name: "Blast ATK Support", effectSummary: "Erhöht Blast-Schaden des Teams" },
+  { id: "health-recovery", name: "Health Recovery Support", effectSummary: "Heilt bei Kartenwechsel" },
+];
+
+function suggestSupportItems(mode: TeamMode, team: OwnedCharacter[]): SupportItem[] {
+  // Best-effort only: dblegends.net does not expose a scrapable generic
+  // support-item catalog, so this maps mode -> plausible generic picks
+  // rather than reading the user's actual unlocked support items.
+  if (mode === "pvp") return [SUPPORT_ITEM_CATALOG[1], SUPPORT_ITEM_CATALOG[0]];
+  if (mode === "raid") {
+    const strikeHeavy =
+      team.reduce((n, t) => n + t.character.statsMax.strikeAtk, 0) >=
+      team.reduce((n, t) => n + t.character.statsMax.blastAtk, 0);
+    return [strikeHeavy ? SUPPORT_ITEM_CATALOG[2] : SUPPORT_ITEM_CATALOG[3], SUPPORT_ITEM_CATALOG[0]];
+  }
+  return [SUPPORT_ITEM_CATALOG[4], SUPPORT_ITEM_CATALOG[0]];
+}
+
+export function buildOptimalTeam(options: BuildTeamOptions): BuiltTeam | null {
+  const { mode, owned, eventTagHint } = options;
+  if (owned.length === 0) return null;
+
+  const withLeaderSkill = owned.filter((o) => o.character.leaderSkill);
+  const leaderPool = (withLeaderSkill.length > 0 ? withLeaderSkill : owned)
+    .map((o) => ({ o, base: baseScore(o) }))
+    .sort((a, b) => b.base - a.base)
+    .slice(0, LEADER_CANDIDATE_POOL)
+    .map((x) => x.o);
+
+  let best: { team: OwnedCharacter[]; leader: OwnedCharacter; score: number; reasoning: string[] } | null = null;
+
+  for (const leader of leaderPool) {
+    const rest = owned.filter((o) => o.character.id !== leader.character.id);
+    const scored = rest.map((candidate) => {
+      const { score: synergy, reasons } = synergyScore(candidate, leader, mode, eventTagHint);
+      const total = baseScore(candidate) + synergy;
+      return { candidate, total, reasons };
+    });
+    scored.sort((a, b) => b.total - a.total);
+
+    const members = scored.slice(0, TEAM_SIZE - 1);
+    const team = [leader, ...members.map((m) => m.candidate)];
+    const leaderReasons = [`${leader.character.name} als Leader gewählt (bester Basis-/Synergie-Score)`];
+    const memberReasons = members.flatMap((m) => m.reasons);
+
+    const total =
+      baseScore(leader) * 1.5 + // leader counts extra since their leader skill affects the whole team
+      members.reduce((n, m) => n + m.total, 0) +
+      colorDiversity(team);
+
+    if (!best || total > best.score) {
+      best = { team, leader, score: total, reasoning: [...leaderReasons, ...memberReasons] };
+    }
+  }
+
+  if (!best) return null;
+
+  return {
+    mode,
+    slots: best.team.map((t) => ({
+      characterId: t.character.id,
+      isLeader: t.character.id === best!.leader.character.id,
+    })),
+    suggestedSupportItems: suggestSupportItems(mode, best.team),
+    score: Math.round(best.score * 100) / 100,
+    reasoning: best.reasoning,
+  };
+}

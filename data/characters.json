@@ -1,0 +1,1611 @@
+{
+  "characters": [
+    {
+      "id": 0,
+      "name": "Goku",
+      "card": "DBL01-02E",
+      "rarity": "EXTREME",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0000_Goku_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1626929,
+        "strikeAtk": 215217,
+        "blastAtk": 109036,
+        "strikeDef": 107372,
+        "blastDef": 105240
+      },
+      "statsMin": {
+        "hp": 16111,
+        "strikeAtk": 2131,
+        "blastAtk": 1079,
+        "strikeDef": 1063,
+        "blastDef": 1042
+      },
+      "tags": [
+        "Saiyan",
+        "Son Family",
+        "Male",
+        "EXTREME",
+        "Melee Type",
+        "BLU",
+        "Saiyan Saga (Z)",
+        "Goku"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 0,
+        "title": "Battle Instincts",
+        "body": "Inflicts enemy with Attribute Downgrade \"+35% to Strike Damage Received\" for 20 timer counts.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500000,
+          "title": "Z Ability I",
+          "body": "+17% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500001,
+          "title": "Z Ability II",
+          "body": "+20% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500002,
+          "title": "Z Ability III",
+          "body": "+22% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500003,
+          "title": "Z Ability IV",
+          "body": "+27% to \"Tag: Saiyan\" base Strike Attack during battle."
+        }
+      ],
+      "releaseOrder": 0
+    },
+    {
+      "id": 1,
+      "name": "Goku",
+      "card": "DBL01-01H",
+      "rarity": "HERO",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0001_Goku_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1417452,
+        "strikeAtk": 105396,
+        "blastAtk": 178992,
+        "strikeDef": 95441,
+        "blastDef": 94492
+      },
+      "statsMin": {
+        "hp": 14036,
+        "strikeAtk": 1043,
+        "blastAtk": 1772,
+        "strikeDef": 945,
+        "blastDef": 935
+      },
+      "tags": [
+        "Saiyan",
+        "Son Family",
+        "Male",
+        "HERO",
+        "Ranged Type",
+        "YEL",
+        "Saiyan Saga (Z)",
+        "Goku"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 1,
+        "title": "Saiyan Raised on Earth",
+        "body": "+40% to Blast damage inflicted for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500004,
+          "title": "Z Ability I",
+          "body": "+15% to \"Tag: Saiyan\" base Blast Defense during battle."
+        },
+        {
+          "id": 500005,
+          "title": "Z Ability II",
+          "body": "+18% to \"Tag: Saiyan\" base Blast Defense during battle."
+        },
+        {
+          "id": 500006,
+          "title": "Z Ability III",
+          "body": "+20% to \"Tag: Saiyan\" base Blast Defense during battle."
+        },
+        {
+          "id": 500007,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Tag: Saiyan\" base Blast Defense during battle."
+        }
+      ],
+      "releaseOrder": 1
+    },
+    {
+      "id": 2,
+      "name": "Gohan (Kid)",
+      "card": "DBL01-36S",
+      "rarity": "SPARKING",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0002_GohanKid_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1883719,
+        "strikeAtk": 223729,
+        "blastAtk": 143148,
+        "strikeDef": 128111,
+        "blastDef": 126837
+      },
+      "statsMin": {
+        "hp": 18654,
+        "strikeAtk": 2215,
+        "blastAtk": 1417,
+        "strikeDef": 1268,
+        "blastDef": 1256
+      },
+      "tags": [
+        "Hybrid Saiyan",
+        "Son Family",
+        "Kids",
+        "Male",
+        "SPARKING",
+        "Melee Type",
+        "YEL",
+        "Saiyan Saga (Z)",
+        "Gohan"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 2,
+        "title": "The Will to Fight",
+        "body": "+50% to Strike damage inflicted for 15 timer counts.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500008,
+          "title": "Z Ability I",
+          "body": "+14% to \"Tag: Hybrid Saiyan\" max base Health during battle."
+        },
+        {
+          "id": 500009,
+          "title": "Z Ability II",
+          "body": "+17% to \"Tag: Hybrid Saiyan\" max base Health during battle."
+        },
+        {
+          "id": 500010,
+          "title": "Z Ability III",
+          "body": "+19% to \"Tag: Hybrid Saiyan\" max base Health during battle."
+        },
+        {
+          "id": 500011,
+          "title": "Z Ability IV",
+          "body": "+20% to \"Tag: Hybrid Saiyan\" max base Health during battle."
+        }
+      ],
+      "releaseOrder": 2
+    },
+    {
+      "id": 3,
+      "name": "Gohan (Kid)",
+      "card": "DBL01-06H",
+      "rarity": "HERO",
+      "element": "Green",
+      "color": "GRN",
+      "img": "0003_GohanKid_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1566501,
+        "strikeAtk": 93005,
+        "blastAtk": 144468,
+        "strikeDef": 124073,
+        "blastDef": 86956
+      },
+      "statsMin": {
+        "hp": 15512,
+        "strikeAtk": 921,
+        "blastAtk": 1430,
+        "strikeDef": 1228,
+        "blastDef": 861
+      },
+      "tags": [
+        "Hybrid Saiyan",
+        "Son Family",
+        "Kids",
+        "Male",
+        "HERO",
+        "Ranged Type",
+        "GRN",
+        "Saiyan Saga (Z)",
+        "Gohan"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 3,
+        "title": "The Courage to Confront",
+        "body": "-5 to own Blast Arts cost for 10 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500012,
+          "title": "Z Ability I",
+          "body": "+18% to \"Tag: Hybrid Saiyan\" base Critical during battle."
+        },
+        {
+          "id": 500013,
+          "title": "Z Ability II",
+          "body": "+21% to \"Tag: Hybrid Saiyan\" base Critical during battle."
+        },
+        {
+          "id": 500014,
+          "title": "Z Ability III",
+          "body": "+23% to \"Tag: Hybrid Saiyan\" base Critical during battle."
+        },
+        {
+          "id": 500015,
+          "title": "Z Ability IV",
+          "body": "+24% to \"Tag: Hybrid Saiyan\" base Critical during battle."
+        }
+      ],
+      "releaseOrder": 3
+    },
+    {
+      "id": 4,
+      "name": "Piccolo",
+      "card": "DBL01-07S",
+      "rarity": "SPARKING",
+      "element": "Green",
+      "color": "GRN",
+      "img": "0004_Piccolo_01",
+      "isZenkai": true,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 2346036,
+        "strikeAtk": 204992,
+        "blastAtk": 200933,
+        "strikeDef": 161926,
+        "blastDef": 158737
+      },
+      "statsMin": {
+        "hp": 23233,
+        "strikeAtk": 2030,
+        "blastAtk": 1990,
+        "strikeDef": 1604,
+        "blastDef": 1572
+      },
+      "tags": [
+        "Regeneration",
+        "Namekian",
+        "Unknown",
+        "SPARKING",
+        "Defense Type",
+        "GRN",
+        "Saiyan Saga (Z)",
+        "Piccolo"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 4,
+        "title": "Demon Willpower",
+        "body": "Restores ally health by 25%.\r\nCancels allies' Attribute Downgrades and Abnormal Conditions.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500016,
+          "title": "Z Ability I",
+          "body": "+19% to \"Element: GRN\" base Strike Defense during battle."
+        },
+        {
+          "id": 500017,
+          "title": "Z Ability II",
+          "body": "+22% to \"Element: GRN\" base Strike Defense during battle."
+        },
+        {
+          "id": 500018,
+          "title": "Z Ability III",
+          "body": "+30% to \"Element: GRN\" or \"Tag: Regeneration\" base Strike Defense during battle."
+        },
+        {
+          "id": 500019,
+          "title": "Z Ability IV",
+          "body": "+33% to \"Element: GRN\" or \"Tag: Regeneration\" base Strike Defense during battle."
+        }
+      ],
+      "releaseOrder": 4
+    },
+    {
+      "id": 5,
+      "name": "Krillin",
+      "card": "DBL01-33E",
+      "rarity": "EXTREME",
+      "element": "Red",
+      "color": "RED",
+      "img": "0005_Krillin_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 2324024,
+        "strikeAtk": 195441,
+        "blastAtk": 189716,
+        "strikeDef": 141615,
+        "blastDef": 140223
+      },
+      "statsMin": {
+        "hp": 23015,
+        "strikeAtk": 1935,
+        "blastAtk": 1879,
+        "strikeDef": 1402,
+        "blastDef": 1389
+      },
+      "tags": [
+        "Super Warrior",
+        "Male",
+        "EXTREME",
+        "Support Type",
+        "RED",
+        "Saiyan Saga (Z)",
+        "Krillin"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 5,
+        "title": "Fragment of the Senzu Bean",
+        "body": "Restores own health by 30%.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500020,
+          "title": "Z Ability I",
+          "body": "+17% to \"Element: RED\" base Blast Defense during battle."
+        },
+        {
+          "id": 500021,
+          "title": "Z Ability II",
+          "body": "+20% to \"Element: RED\" base Blast Defense during battle."
+        },
+        {
+          "id": 500022,
+          "title": "Z Ability III",
+          "body": "+25% to \"Element: RED\" base Strike & Blast Defense during battle."
+        },
+        {
+          "id": 500023,
+          "title": "Z Ability IV",
+          "body": "+28% to \"Element: RED\" base Strike & Blast Defense during battle."
+        }
+      ],
+      "releaseOrder": 5
+    },
+    {
+      "id": 6,
+      "name": "Krillin",
+      "card": "DBL01-09H",
+      "rarity": "HERO",
+      "element": "Purple",
+      "color": "PUR",
+      "img": "0006_Krillin_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1826545,
+        "strikeAtk": 119352,
+        "blastAtk": 145382,
+        "strikeDef": 80364,
+        "blastDef": 124217
+      },
+      "statsMin": {
+        "hp": 18088,
+        "strikeAtk": 1181,
+        "blastAtk": 1439,
+        "strikeDef": 795,
+        "blastDef": 1230
+      },
+      "tags": [
+        "Super Warrior",
+        "Male",
+        "HERO",
+        "Defense Type",
+        "PUR",
+        "Saiyan Saga (Z)",
+        "Krillin"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 6,
+        "title": "The Results of Training",
+        "body": "Restores own health by 25%.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500024,
+          "title": "Z Ability I",
+          "body": "+15% to \"Element: PUR\" base Blast Defense during battle."
+        },
+        {
+          "id": 500025,
+          "title": "Z Ability II",
+          "body": "+18% to \"Element: PUR\" base Blast Defense during battle."
+        },
+        {
+          "id": 500026,
+          "title": "Z Ability III",
+          "body": "+20% to \"Element: PUR\" base Blast Defense during battle."
+        },
+        {
+          "id": 500027,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Element: PUR\" base Blast Defense during battle."
+        }
+      ],
+      "releaseOrder": 6
+    },
+    {
+      "id": 7,
+      "name": "Yamcha",
+      "card": "DBL01-38E",
+      "rarity": "EXTREME",
+      "element": "Green",
+      "color": "GRN",
+      "img": "0007_Yamucha_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1989609,
+        "strikeAtk": 230155,
+        "blastAtk": 192919,
+        "strikeDef": 118013,
+        "blastDef": 122205
+      },
+      "statsMin": {
+        "hp": 19703,
+        "strikeAtk": 2279,
+        "blastAtk": 1910,
+        "strikeDef": 1169,
+        "blastDef": 1210
+      },
+      "tags": [
+        "Super Warrior",
+        "Male",
+        "EXTREME",
+        "Melee Type",
+        "GRN",
+        "Saiyan Saga (Z)",
+        "Yamcha"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 7,
+        "title": "Galeforce Fist",
+        "body": "+45% to Strike damage inflicted for 15 timer counts.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500028,
+          "title": "Z Ability I",
+          "body": "+17% to \"Element: GRN\" base Blast Attack during battle."
+        },
+        {
+          "id": 500029,
+          "title": "Z Ability II",
+          "body": "+20% to \"Element: GRN\" base Blast Attack during battle."
+        },
+        {
+          "id": 500030,
+          "title": "Z Ability III",
+          "body": "+25% to \"Element: GRN\" base Strike & Blast Attack during battle."
+        },
+        {
+          "id": 500031,
+          "title": "Z Ability IV",
+          "body": "+28% to \"Element: GRN\" base Strike & Blast Attack during battle."
+        }
+      ],
+      "releaseOrder": 7
+    },
+    {
+      "id": 8,
+      "name": "Tien",
+      "card": "DBL01-11E",
+      "rarity": "EXTREME",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0008_TienShinhan_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1971028,
+        "strikeAtk": 202107,
+        "blastAtk": 198125,
+        "strikeDef": 151552,
+        "blastDef": 153060
+      },
+      "statsMin": {
+        "hp": 19519,
+        "strikeAtk": 2001,
+        "blastAtk": 1962,
+        "strikeDef": 1501,
+        "blastDef": 1516
+      },
+      "tags": [
+        "Super Warrior",
+        "Male",
+        "EXTREME",
+        "Defense Type",
+        "YEL",
+        "Saiyan Saga (Z)",
+        "Tien"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 8,
+        "title": "The Observant Third Eye",
+        "body": "+35% to Ki Recovery for 17 timer counts.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500032,
+          "title": "Z Ability I",
+          "body": "+17% to \"Element: YEL\" base Strike Defense during battle."
+        },
+        {
+          "id": 500033,
+          "title": "Z Ability II",
+          "body": "+20% to \"Element: YEL\" base Strike Defense during battle."
+        },
+        {
+          "id": 500034,
+          "title": "Z Ability III",
+          "body": "+25% to \"Element: YEL\" base Strike Attack & Defense during battle."
+        },
+        {
+          "id": 500035,
+          "title": "Z Ability IV",
+          "body": "+28% to \"Element: YEL\" base Strike Attack & Defense during battle."
+        }
+      ],
+      "releaseOrder": 8
+    },
+    {
+      "id": 9,
+      "name": "Chiaotzu",
+      "card": "DBL01-12E",
+      "rarity": "EXTREME",
+      "element": "Purple",
+      "color": "PUR",
+      "img": "0009_Chaozu_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 2089988,
+        "strikeAtk": 105635,
+        "blastAtk": 195774,
+        "strikeDef": 126527,
+        "blastDef": 128418
+      },
+      "statsMin": {
+        "hp": 20697,
+        "strikeAtk": 1046,
+        "blastAtk": 1939,
+        "strikeDef": 1253,
+        "blastDef": 1272
+      },
+      "tags": [
+        "Super Warrior",
+        "DBL01-12E",
+        "Male",
+        "EXTREME",
+        "Support Type",
+        "PUR",
+        "Saiyan Saga (Z)",
+        "Chiaotzu"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 9,
+        "title": "Farewell Tien",
+        "body": "Draw the Awakened Arts Card \"Self-Destruct\" next.\r\n\r\nRequirements: 20 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500036,
+          "title": "Z Ability I",
+          "body": "+17% to damage inflicted by allies with Self-Destruct during battle."
+        },
+        {
+          "id": 500037,
+          "title": "Z Ability II",
+          "body": "+20% to damage inflicted by allies with Self-Destruct during battle."
+        },
+        {
+          "id": 500038,
+          "title": "Z Ability III",
+          "body": "+25% to damage inflicted by allies with Self-Destruct during battle."
+        },
+        {
+          "id": 500039,
+          "title": "Z Ability IV",
+          "body": "+30% to damage inflicted by allies with Self-Destruct during battle."
+        }
+      ],
+      "releaseOrder": 9
+    },
+    {
+      "id": 10,
+      "name": "Raditz",
+      "card": "DBL01-22H",
+      "rarity": "HERO",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0010_Raditz_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1205580,
+        "strikeAtk": 152072,
+        "blastAtk": 144655,
+        "strikeDef": 102489,
+        "blastDef": 116989
+      },
+      "statsMin": {
+        "hp": 11938,
+        "strikeAtk": 1505,
+        "blastAtk": 1432,
+        "strikeDef": 1014,
+        "blastDef": 1158
+      },
+      "tags": [
+        "Frieza Force",
+        "Saiyan",
+        "Male",
+        "HERO",
+        "Melee Type",
+        "BLU",
+        "Saiyan Saga (Z)",
+        "Raditz"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 10,
+        "title": "Ruthless Invader",
+        "body": "-5 to own Blast Arts cost for 10 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500040,
+          "title": "Z Ability I",
+          "body": "+15% to \"Element: BLU\" base Blast Defense during battle."
+        },
+        {
+          "id": 500041,
+          "title": "Z Ability II",
+          "body": "+18% to \"Element: BLU\" base Blast Defense during battle."
+        },
+        {
+          "id": 500042,
+          "title": "Z Ability III",
+          "body": "+20% to \"Element: BLU\" base Blast Defense during battle."
+        },
+        {
+          "id": 500043,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Element: BLU\" base Blast Defense during battle."
+        }
+      ],
+      "releaseOrder": 10
+    },
+    {
+      "id": 11,
+      "name": "Saibaman",
+      "card": "DBL01-23H",
+      "rarity": "HERO",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0011_Saibaiman_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1506234,
+        "strikeAtk": 124155,
+        "blastAtk": 125404,
+        "strikeDef": 105542,
+        "blastDef": 104493
+      },
+      "statsMin": {
+        "hp": 14916,
+        "strikeAtk": 1229,
+        "blastAtk": 1241,
+        "strikeDef": 1045,
+        "blastDef": 1034
+      },
+      "tags": [
+        "Minion",
+        "Unknown",
+        "HERO",
+        "Support Type",
+        "YEL",
+        "Saiyan Saga (Z)",
+        "Saibaman"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 11,
+        "title": "Gyah!!",
+        "body": "Draw the Awakened Arts Card \"Self-Destruct\" next.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500044,
+          "title": "Z Ability I",
+          "body": "+10% to \"Element: YEL\" max base Health during battle."
+        },
+        {
+          "id": 500045,
+          "title": "Z Ability II",
+          "body": "+13% to \"Element: YEL\" max base Health during battle."
+        },
+        {
+          "id": 500046,
+          "title": "Z Ability III",
+          "body": "+15% to \"Element: YEL\" max base Health during battle."
+        },
+        {
+          "id": 500047,
+          "title": "Z Ability IV",
+          "body": "+16% to \"Element: YEL\" max base Health during battle."
+        }
+      ],
+      "releaseOrder": 11
+    },
+    {
+      "id": 12,
+      "name": "Nappa",
+      "card": "DBL01-19E",
+      "rarity": "EXTREME",
+      "element": "Red",
+      "color": "RED",
+      "img": "0012_Nappa_01",
+      "isZenkai": true,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1812847,
+        "strikeAtk": 206318,
+        "blastAtk": 108496,
+        "strikeDef": 83846,
+        "blastDef": 118451
+      },
+      "statsMin": {
+        "hp": 17952,
+        "strikeAtk": 2043,
+        "blastAtk": 1074,
+        "strikeDef": 830,
+        "blastDef": 1173
+      },
+      "tags": [
+        "Frieza Force",
+        "Saiyan",
+        "DBL01-19E",
+        "Male",
+        "EXTREME",
+        "Melee Type",
+        "RED",
+        "Saiyan Saga (Z)",
+        "Nappa"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 12,
+        "title": "Outrageous Health",
+        "body": "+35% to Ki Recovery for 17 timer counts.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500048,
+          "title": "Z Ability I",
+          "body": "+12% to damage inflicted to \"Element: YEL\" during battle."
+        },
+        {
+          "id": 500049,
+          "title": "Z Ability II",
+          "body": "+15% to damage inflicted to \"Element: YEL\" during battle."
+        },
+        {
+          "id": 500050,
+          "title": "Z Ability III",
+          "body": "+17% to damage inflicted to \"Element: YEL\" during battle."
+        },
+        {
+          "id": 500051,
+          "title": "Z Ability IV",
+          "body": "+18% to damage inflicted to \"Element: YEL\" during battle."
+        }
+      ],
+      "releaseOrder": 12
+    },
+    {
+      "id": 13,
+      "name": "Nappa",
+      "card": "DBL01-20H",
+      "rarity": "HERO",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0013_Nappa_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1446159,
+        "strikeAtk": 150558,
+        "blastAtk": 155969,
+        "strikeDef": 107634,
+        "blastDef": 101872
+      },
+      "statsMin": {
+        "hp": 14321,
+        "strikeAtk": 1490,
+        "blastAtk": 1544,
+        "strikeDef": 1065,
+        "blastDef": 1008
+      },
+      "tags": [
+        "Frieza Force",
+        "Saiyan",
+        "Male",
+        "HERO",
+        "Ranged Type",
+        "YEL",
+        "Saiyan Saga (Z)",
+        "Nappa"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 13,
+        "title": "Torrential Power",
+        "body": "+40% to Strike damage inflicted for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500052,
+          "title": "Z Ability I",
+          "body": "+10% to damage inflicted to \"Element: PUR\" during battle."
+        },
+        {
+          "id": 500053,
+          "title": "Z Ability II",
+          "body": "+13% to damage inflicted to \"Element: PUR\" during battle."
+        },
+        {
+          "id": 500054,
+          "title": "Z Ability III",
+          "body": "+15% to damage inflicted to \"Element: PUR\" during battle."
+        },
+        {
+          "id": 500055,
+          "title": "Z Ability IV",
+          "body": "+16% to damage inflicted to \"Element: PUR\" during battle."
+        }
+      ],
+      "releaseOrder": 13
+    },
+    {
+      "id": 14,
+      "name": "Vegeta",
+      "card": "DBL01-17S",
+      "rarity": "SPARKING",
+      "element": "Purple",
+      "color": "PUR",
+      "img": "0014_Vegeta_01",
+      "isZenkai": true,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 2289030,
+        "strikeAtk": 199771,
+        "blastAtk": 247428,
+        "strikeDef": 145737,
+        "blastDef": 141466
+      },
+      "statsMin": {
+        "hp": 22668,
+        "strikeAtk": 1978,
+        "blastAtk": 2450,
+        "strikeDef": 1443,
+        "blastDef": 1401
+      },
+      "tags": [
+        "Frieza Force",
+        "Saiyan",
+        "Powerful Opponent",
+        "Vegeta Clan",
+        "DBL01-17S",
+        "Male",
+        "SPARKING",
+        "Ranged Type",
+        "PUR",
+        "Saiyan Saga (Z)",
+        "Vegeta"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 14,
+        "title": "Prince's Pride",
+        "body": "Draw a Blast Arts Card next.\r\n+50% to Blast damage inflicted for 30 timer counts.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500056,
+          "title": "Z Ability I",
+          "body": "+19% to \"Tag: Saiyan\" base Blast Attack during battle."
+        },
+        {
+          "id": 500057,
+          "title": "Z Ability II",
+          "body": "+22% to \"Tag: Saiyan\" base Blast Attack during battle."
+        },
+        {
+          "id": 500058,
+          "title": "Z Ability III",
+          "body": "+24% to \"Tag: Saiyan\" or \"Tag: Frieza Force\" base Blast Attack during battle."
+        },
+        {
+          "id": 500059,
+          "title": "Z Ability IV",
+          "body": "+25% to \"Tag: Saiyan\" or \"Tag: Frieza Force\" base Blast Attack during battle."
+        }
+      ],
+      "releaseOrder": 14
+    },
+    {
+      "id": 15,
+      "name": "Goku",
+      "card": "DBL-EVT-00S",
+      "rarity": "SPARKING",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0015_Goku_03",
+      "isZenkai": true,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1883813,
+        "strikeAtk": 167822,
+        "blastAtk": 154112,
+        "strikeDef": 127956,
+        "blastDef": 134517
+      },
+      "statsMin": {
+        "hp": 18655,
+        "strikeAtk": 1661,
+        "blastAtk": 1526,
+        "strikeDef": 1267,
+        "blastDef": 1332
+      },
+      "tags": [
+        "Saiyan",
+        "Son Family",
+        "Event Exclusive",
+        "DBL-EVT-00S",
+        "Male",
+        "SPARKING",
+        "Defense Type",
+        "BLU",
+        "Frieza Saga (Z)",
+        "Goku"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 15,
+        "title": "Last Hope",
+        "body": "Inflicts enemy with Attribute Downgrade \"+40% to Blast Damage Received\" 25 timer counts.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500060,
+          "title": "Z Ability I",
+          "body": "+19% to \"Tag: Saiyan\" or \"Tag: Event Exclusive\" base Strike Defense during battle."
+        },
+        {
+          "id": 500061,
+          "title": "Z Ability II",
+          "body": "+22% to \"Tag: Saiyan\" or \"Tag: Event Exclusive\" base Strike Defense during battle."
+        },
+        {
+          "id": 500062,
+          "title": "Z Ability III",
+          "body": "+24% to \"Tag: Saiyan\" or \"Tag: Event Exclusive\" base Strike Defense during battle."
+        },
+        {
+          "id": 500063,
+          "title": "Z Ability IV",
+          "body": "+25% to \"Tag: Saiyan\" or \"Tag: Event Exclusive\" base Strike Defense during battle."
+        }
+      ],
+      "releaseOrder": 15
+    },
+    {
+      "id": 16,
+      "name": "Super Saiyan Goku",
+      "card": "DBL01-04S",
+      "rarity": "SPARKING",
+      "element": "Red",
+      "color": "RED",
+      "img": "0016_GokuSS1_01",
+      "isZenkai": true,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1712386,
+        "strikeAtk": 180837,
+        "blastAtk": 226973,
+        "strikeDef": 109677,
+        "blastDef": 115300
+      },
+      "statsMin": {
+        "hp": 16957,
+        "strikeAtk": 1790,
+        "blastAtk": 2247,
+        "strikeDef": 1086,
+        "blastDef": 1141
+      },
+      "tags": [
+        "Saiyan",
+        "Super Saiyan",
+        "Son Family",
+        "DBL01-04S",
+        "Male",
+        "SPARKING",
+        "Ranged Type",
+        "RED",
+        "Frieza Saga (Z)",
+        "Goku"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 16,
+        "title": "My Turn",
+        "body": "Draw the Ultimate Arts Card \"Super Dragon Fist\" next.\r\n\r\nRequirements: 25 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500064,
+          "title": "Z Ability I",
+          "body": "+19% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500065,
+          "title": "Z Ability II",
+          "body": "+22% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500066,
+          "title": "Z Ability III",
+          "body": "+24% to \"Tag: Saiyan\" base Strike Attack during battle."
+        },
+        {
+          "id": 500067,
+          "title": "Z Ability IV",
+          "body": "+25% to \"Tag: Saiyan\" base Strike Attack during battle."
+        }
+      ],
+      "releaseOrder": 16
+    },
+    {
+      "id": 17,
+      "name": "Fused with Nail Piccolo",
+      "card": "DBL01-37E",
+      "rarity": "EXTREME",
+      "element": "Yellow",
+      "color": "YEL",
+      "img": "0017_Piccolo_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 2310999,
+        "strikeAtk": 192109,
+        "blastAtk": 190182,
+        "strikeDef": 144136,
+        "blastDef": 142712
+      },
+      "statsMin": {
+        "hp": 22886,
+        "strikeAtk": 1902,
+        "blastAtk": 1883,
+        "strikeDef": 1427,
+        "blastDef": 1413
+      },
+      "tags": [
+        "Super Warrior",
+        "Regeneration",
+        "Merging",
+        "Namekian",
+        "Unknown",
+        "EXTREME",
+        "Defense Type",
+        "YEL",
+        "Frieza Saga (Z)",
+        "Piccolo"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 17,
+        "title": "Warrior-Type Namekian",
+        "body": "Restores ally health by 20% and cancels allies' Abnormal Conditions.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500068,
+          "title": "Z Ability I",
+          "body": "+17% to \"Element: YEL\" Health Restoration during battle."
+        },
+        {
+          "id": 500069,
+          "title": "Z Ability II",
+          "body": "+20% to \"Element: YEL\" Health Restoration during battle."
+        },
+        {
+          "id": 500070,
+          "title": "Z Ability III",
+          "body": "+17% to \"Element: YEL\" max base Health and +25% to their Health Restoration during battle."
+        },
+        {
+          "id": 500071,
+          "title": "Z Ability IV",
+          "body": "+19% to \"Element: YEL\" max base Health and +28% to their Health Restoration during battle."
+        }
+      ],
+      "releaseOrder": 17
+    },
+    {
+      "id": 18,
+      "name": "Vegeta",
+      "card": "DBL01-39E",
+      "rarity": "EXTREME",
+      "element": "Green",
+      "color": "GRN",
+      "img": "0018_Vegeta_02",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1989508,
+        "strikeAtk": 195763,
+        "blastAtk": 234496,
+        "strikeDef": 134520,
+        "blastDef": 135864
+      },
+      "statsMin": {
+        "hp": 19702,
+        "strikeAtk": 1939,
+        "blastAtk": 2322,
+        "strikeDef": 1332,
+        "blastDef": 1345
+      },
+      "tags": [
+        "Saiyan",
+        "Vegeta Clan",
+        "Male",
+        "EXTREME",
+        "Ranged Type",
+        "GRN",
+        "Frieza Saga (Z)",
+        "Vegeta"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 18,
+        "title": "Elite Pride",
+        "body": "+45% to Blast damage inflicted for 15 timer counts.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500072,
+          "title": "Z Ability I",
+          "body": "+17% to \"Tag: Saiyan\" base Blast Attack during battle."
+        },
+        {
+          "id": 500073,
+          "title": "Z Ability II",
+          "body": "+20% to \"Tag: Saiyan\" base Blast Attack during battle."
+        },
+        {
+          "id": 500074,
+          "title": "Z Ability III",
+          "body": "+25% to \"Tag: Saiyan\" base Blast Attack during battle."
+        },
+        {
+          "id": 500075,
+          "title": "Z Ability IV",
+          "body": "+28% to \"Tag: Saiyan\" base Blast Attack during battle."
+        }
+      ],
+      "releaseOrder": 18
+    },
+    {
+      "id": 19,
+      "name": "Vegeta",
+      "card": "DBL01-18H",
+      "rarity": "HERO",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0019_Vegeta_03",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1717866,
+        "strikeAtk": 120558,
+        "blastAtk": 168111,
+        "strikeDef": 73352,
+        "blastDef": 118006
+      },
+      "statsMin": {
+        "hp": 17011,
+        "strikeAtk": 1193,
+        "blastAtk": 1664,
+        "strikeDef": 726,
+        "blastDef": 1168
+      },
+      "tags": [
+        "Saiyan",
+        "Vegeta Clan",
+        "Male",
+        "HERO",
+        "Ranged Type",
+        "BLU",
+        "Frieza Saga (Z)",
+        "Vegeta"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 19,
+        "title": "Elite Warrior Power",
+        "body": "Inflicts enemy with Attribute Downgrade \"+30% to Blast Damage Received\" for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500076,
+          "title": "Z Ability I",
+          "body": "+15% to \"Element: BLU\" base Blast Attack during battle."
+        },
+        {
+          "id": 500077,
+          "title": "Z Ability II",
+          "body": "+18% to \"Element: BLU\" base Blast Attack during battle."
+        },
+        {
+          "id": 500078,
+          "title": "Z Ability III",
+          "body": "+20% to \"Element: BLU\" base Blast Attack during battle."
+        },
+        {
+          "id": 500079,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Element: BLU\" base Blast Attack during battle."
+        }
+      ],
+      "releaseOrder": 19
+    },
+    {
+      "id": 20,
+      "name": "Zarbon",
+      "card": "DBL01-25H",
+      "rarity": "HERO",
+      "element": "Green",
+      "color": "GRN",
+      "img": "0020_Zarbon_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1614209,
+        "strikeAtk": 104107,
+        "blastAtk": 103066,
+        "strikeDef": 128481,
+        "blastDef": 127858
+      },
+      "statsMin": {
+        "hp": 15985,
+        "strikeAtk": 1030,
+        "blastAtk": 1020,
+        "strikeDef": 1272,
+        "blastDef": 1266
+      },
+      "tags": [
+        "Frieza Force",
+        "Transforming Warrior",
+        "Male",
+        "HERO",
+        "Defense Type",
+        "GRN",
+        "Frieza Saga (Z)",
+        "Zarbon"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 20,
+        "title": "Narcissist",
+        "body": "Inflicts enemy with Attribute Downgrade \"+30% to Blast Damage Received\" for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500080,
+          "title": "Z Ability I",
+          "body": "+15% to \"Element: GRN\" base Blast Attack during battle."
+        },
+        {
+          "id": 500081,
+          "title": "Z Ability II",
+          "body": "+18% to \"Element: GRN\" base Blast Attack during battle."
+        },
+        {
+          "id": 500082,
+          "title": "Z Ability III",
+          "body": "+20% to \"Element: GRN\" base Blast Attack during battle."
+        },
+        {
+          "id": 500083,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Element: GRN\" base Blast Attack during battle."
+        }
+      ],
+      "releaseOrder": 20
+    },
+    {
+      "id": 21,
+      "name": "Dodoria",
+      "card": "DBL01-26H",
+      "rarity": "HERO",
+      "element": "Red",
+      "color": "RED",
+      "img": "0021_Dodoria_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1156754,
+        "strikeAtk": 164766,
+        "blastAtk": 143201,
+        "strikeDef": 77876,
+        "blastDef": 76338
+      },
+      "statsMin": {
+        "hp": 11455,
+        "strikeAtk": 1631,
+        "blastAtk": 1418,
+        "strikeDef": 771,
+        "blastDef": 755
+      },
+      "tags": [
+        "Frieza Force",
+        "Male",
+        "HERO",
+        "Melee Type",
+        "RED",
+        "Frieza Saga (Z)",
+        "Dodoria"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 21,
+        "title": "A Taste for Cruelty",
+        "body": "+40% to Blast damage inflicted for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500084,
+          "title": "Z Ability I",
+          "body": "+15% to \"Element: RED\" base Strike Attack during battle."
+        },
+        {
+          "id": 500085,
+          "title": "Z Ability II",
+          "body": "+18% to \"Element: RED\" base Strike Attack during battle."
+        },
+        {
+          "id": 500086,
+          "title": "Z Ability III",
+          "body": "+20% to \"Element: RED\" base Strike Attack during battle."
+        },
+        {
+          "id": 500087,
+          "title": "Z Ability IV",
+          "body": "+21% to \"Element: RED\" base Strike Attack during battle."
+        }
+      ],
+      "releaseOrder": 21
+    },
+    {
+      "id": 22,
+      "name": "Guldo",
+      "card": "DBL01-30H",
+      "rarity": "HERO",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0022_Guldo_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1567706,
+        "strikeAtk": 117971,
+        "blastAtk": 130383,
+        "strikeDef": 102449,
+        "blastDef": 104513
+      },
+      "statsMin": {
+        "hp": 15524,
+        "strikeAtk": 1168,
+        "blastAtk": 1291,
+        "strikeDef": 1014,
+        "blastDef": 1034
+      },
+      "tags": [
+        "Frieza Force",
+        "Ginyu Force",
+        "Male",
+        "HERO",
+        "Support Type",
+        "BLU",
+        "Frieza Saga (Z)",
+        "Guldo"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 22,
+        "title": "Kieeee!!",
+        "body": "Draw the Awakened Arts Card \"Bind\" next.\r\n\r\nRequirements: 15 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500088,
+          "title": "Z Ability I",
+          "body": "+18% to \"Tag: Ginyu Force\" base Blast Defense during battle."
+        },
+        {
+          "id": 500089,
+          "title": "Z Ability II",
+          "body": "+21% to \"Tag: Ginyu Force\" base Blast Defense during battle."
+        },
+        {
+          "id": 500090,
+          "title": "Z Ability III",
+          "body": "+23% to \"Tag: Ginyu Force\" base Blast Defense during battle."
+        },
+        {
+          "id": 500091,
+          "title": "Z Ability IV",
+          "body": "+24% to \"Tag: Ginyu Force\" base Blast Defense during battle."
+        }
+      ],
+      "releaseOrder": 22
+    },
+    {
+      "id": 23,
+      "name": "Burter",
+      "card": "DBL01-29H",
+      "rarity": "HERO",
+      "element": "Blue",
+      "color": "BLU",
+      "img": "0023_Burter_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1403137,
+        "strikeAtk": 138005,
+        "blastAtk": 120533,
+        "strikeDef": 87615,
+        "blastDef": 86743
+      },
+      "statsMin": {
+        "hp": 13895,
+        "strikeAtk": 1366,
+        "blastAtk": 1193,
+        "strikeDef": 867,
+        "blastDef": 859
+      },
+      "tags": [
+        "Frieza Force",
+        "Ginyu Force",
+        "Male",
+        "HERO",
+        "Support Type",
+        "BLU",
+        "Frieza Saga (Z)",
+        "Burter"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 23,
+        "title": "Fastest in the Galaxy",
+        "body": "+40% to own Vanishing Gauge Recovery for 15 timer counts.\r\n\r\nRequirements: 10 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500092,
+          "title": "Z Ability I",
+          "body": "+18% to \"Tag: Ginyu Force\" base Strike Defense during battle."
+        },
+        {
+          "id": 500093,
+          "title": "Z Ability II",
+          "body": "+21% to \"Tag: Ginyu Force\" base Strike Defense during battle."
+        },
+        {
+          "id": 500094,
+          "title": "Z Ability III",
+          "body": "+23% to \"Tag: Ginyu Force\" base Strike Defense during battle."
+        },
+        {
+          "id": 500095,
+          "title": "Z Ability IV",
+          "body": "+24% to \"Tag: Ginyu Force\" base Strike Defense during battle."
+        }
+      ],
+      "releaseOrder": 23
+    },
+    {
+      "id": 24,
+      "name": "Recoome",
+      "card": "DBL01-27H",
+      "rarity": "HERO",
+      "element": "Red",
+      "color": "RED",
+      "img": "0024_Recoome_01",
+      "isZenkai": false,
+      "isLegendsLimited": false,
+      "statsMax": {
+        "hp": 1431555,
+        "strikeAtk": 180800,
+        "blastAtk": 128494,
+        "strikeDef": 95432,
+        "blastDef": 95437
+      },
+      "statsMin": {
+        "hp": 14176,
+        "strikeAtk": 1790,
+        "blastAtk": 1272,
+        "strikeDef": 945,
+        "blastDef": 945
+      },
+      "tags": [
+        "Frieza Force",
+        "Ginyu Force",
+        "Male",
+        "HERO",
+        "Melee Type",
+        "RED",
+        "Frieza Saga (Z)",
+        "Recoome"
+      ],
+      "traits": [],
+      "mainAbility": {
+        "id": 24,
+        "title": "Overwhelming Toughness",
+        "body": "Inflicts enemy with Attribute Downgrade \"+30% to Blast Damage Received\" for 15 timer counts.\r\n\r\nRequirements: 5 timer counts must elapse."
+      },
+      "zAbilities": [
+        {
+          "id": 500096,
+          "title": "Z Ability I",
+          "body": "+18% to \"Tag: Ginyu Force\" base Strike Attack during battle."
+        },
+        {
+          "id": 500097,
+          "title": "Z Ability II",
+          "body": "+21% to \"Tag: Ginyu Force\" base Strike Attack during battle."
+        },
+        {
+          "id": 500098,
+          "title": "Z Ability III",
+          "body": "+23% to \"Tag: Ginyu Force\" base Strike Attack during battle."
+        },
+        {
+          "id": 500099,
+          "title": "Z Ability IV",
+          "body": "+24% to \"Tag: Ginyu Force\" base Strike Attack during battle."
+        }
+      ],
+      "releaseOrder": 24
+    }
+  ],
+  "fetchedAt": "2026-07-29T12:28:07.825Z"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "autodblegends",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Automatischer Team Builder fuer Dragon Ball Legends",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/web",
+    "build": "npm run build -w packages/shared && npm run build -w apps/web",
+    "scrape": "npm run scrape -w apps/scraper",
+    "lint": "npm run lint -w apps/web"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

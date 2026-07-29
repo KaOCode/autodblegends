@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "@heroui/react/styles";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100svh;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 20% -10%, #1b2450 0%, #0b0e1a 55%, #08090f 100%);
+  color: #e7ebf6;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c3454;
+  border-radius: 999px;
+}
+
+.glass-panel {
+  background: rgba(23, 28, 46, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
