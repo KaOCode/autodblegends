@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { Button } from "@heroui/react";
 import { useState } from "react";
-import { useAuth } from "../lib/useAuth";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { signInWithEmail, signOut } from "../store/authSlice";
 import { isCloudSyncEnabled } from "../lib/supabaseClient";
 import { exportProfileToFile, importProfileFromFile } from "../lib/storage";
 
@@ -12,13 +13,15 @@ const NAV_ITEMS = [
 ];
 
 export function Layout() {
-  const { session, loading, signInWithEmail, signOut } = useAuth();
+  const dispatch = useAppDispatch();
+  const session = useAppSelector((s) => s.auth.session);
+  const loading = useAppSelector((s) => s.auth.loading);
   const [email, setEmail] = useState("");
   const [authMessage, setAuthMessage] = useState<string | null>(null);
   const [showAuth, setShowAuth] = useState(false);
 
   async function handleSignIn() {
-    const { error } = await signInWithEmail(email);
+    const { error } = await dispatch(signInWithEmail(email)).unwrap();
     setAuthMessage(error ?? "Magic Link gesendet, bitte E-Mail prüfen.");
   }
 
@@ -55,7 +58,7 @@ export function Layout() {
           ) : session ? (
             <div className="flex items-center gap-2">
               <span className="text-xs text-white/60">{session.user.email}</span>
-              <Button size="sm" variant="outline" onPress={() => void signOut()}>
+              <Button size="sm" variant="outline" onPress={() => void dispatch(signOut())}>
                 Abmelden
               </Button>
             </div>

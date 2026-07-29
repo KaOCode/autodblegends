@@ -1,8 +1,10 @@
 import { useMemo, useState, type ReactElement } from "react";
 import { Button } from "@heroui/react";
 import { buildOptimalTeam, type BuiltTeam, type OwnedCharacter, type TeamMode } from "@autodbl/shared";
-import { useApp } from "../lib/AppContext";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { saveTeam } from "../store/profileSlice";
 import { CharacterCard } from "../components/CharacterCard";
+import { CharacterHoverCard } from "../components/CharacterHoverCard";
 import { StaggerReveal } from "../components/animate-ui/StaggerReveal";
 import { SlidingNumber } from "../components/animate-ui/SlidingNumber";
 
@@ -13,7 +15,9 @@ const MODES: { key: TeamMode; label: string }[] = [
 ];
 
 export function TeamBuilderPage() {
-  const { characters, inventory, saveTeam } = useApp();
+  const dispatch = useAppDispatch();
+  const characters = useAppSelector((s) => s.gameData.characters);
+  const inventory = useAppSelector((s) => s.profile.inventory);
   const [mode, setMode] = useState<TeamMode>("pvp");
   const [eventTagHint, setEventTagHint] = useState("");
   const [result, setResult] = useState<BuiltTeam | null>(null);
@@ -38,15 +42,17 @@ export function TeamBuilderPage() {
   function handleSave() {
     if (!result) return;
     const now = new Date().toISOString();
-    saveTeam({
-      id: crypto.randomUUID(),
-      name: teamName.trim() || `${mode.toUpperCase()} Team ${new Date().toLocaleDateString("de-DE")}`,
-      mode: result.mode,
-      slots: result.slots,
-      supportItemIds: result.suggestedSupportItems.map((s) => s.id),
-      createdAt: now,
-      updatedAt: now,
-    });
+    dispatch(
+      saveTeam({
+        id: crypto.randomUUID(),
+        name: teamName.trim() || `${mode.toUpperCase()} Team ${new Date().toLocaleDateString("de-DE")}`,
+        mode: result.mode,
+        slots: result.slots,
+        supportItemIds: result.suggestedSupportItems.map((s) => s.id),
+        createdAt: now,
+        updatedAt: now,
+      }),
+    );
     setTeamName("");
   }
 
@@ -117,7 +123,11 @@ export function TeamBuilderPage() {
               .map((slot) => {
                 const character = charById.get(slot.characterId);
                 if (!character) return null;
-                return <CharacterCard key={slot.characterId} character={character} isLeader={slot.isLeader} />;
+                return (
+                  <CharacterHoverCard key={slot.characterId} character={character}>
+                    <CharacterCard character={character} isLeader={slot.isLeader} />
+                  </CharacterHoverCard>
+                );
               })
               .filter((v): v is ReactElement => v !== null)}
           </StaggerReveal>

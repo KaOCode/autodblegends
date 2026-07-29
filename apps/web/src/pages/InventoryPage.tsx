@@ -1,10 +1,15 @@
 import { useMemo, useState } from "react";
-import { Chip } from "@heroui/react";
-import { useApp } from "../lib/AppContext";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { upsertInventoryEntry } from "../store/profileSlice";
 import { StarPicker } from "../components/StarPicker";
+import { CharacterCard } from "../components/CharacterCard";
+import { CharacterHoverCard } from "../components/CharacterHoverCard";
 
 export function InventoryPage() {
-  const { characters, loading, inventory, upsertInventoryEntry } = useApp();
+  const dispatch = useAppDispatch();
+  const characters = useAppSelector((s) => s.gameData.characters);
+  const loading = useAppSelector((s) => s.gameData.loading);
+  const inventory = useAppSelector((s) => s.profile.inventory);
   const [search, setSearch] = useState("");
   const [ownedOnly, setOwnedOnly] = useState(false);
 
@@ -45,39 +50,33 @@ export function InventoryPage() {
         </div>
       )}
 
+      <p className="mb-3 text-xs text-white/30">Tipp: 4 Sekunden über einer Karte verweilen zeigt Fähigkeiten &amp; Zugehörigkeit.</p>
+
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((c) => {
           const entry = inventoryByChar.get(c.id);
           return (
-            <div key={c.id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3">
-              <img
-                src={`https://dblegends.net/assets/card_icons/BChaIco_${c.img}.webp`}
-                alt={c.name}
-                className="h-14 w-14 rounded-lg object-cover"
-                loading="lazy"
-              />
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-white">{c.name}</p>
-                <p className="truncate text-xs text-white/50">{c.card}</p>
-                <Chip size="sm" color={c.rarity === "LEGEND" ? "warning" : "default"}>
-                  <Chip.Label>{c.rarity}</Chip.Label>
-                </Chip>
-                <div className="mt-1">
+            <CharacterHoverCard key={c.id} character={c}>
+              <CharacterCard
+                character={c}
+                right={
                   <StarPicker
                     value={entry?.stars ?? 0}
                     onChange={(stars) =>
-                      upsertInventoryEntry({
-                        characterId: c.id,
-                        stars,
-                        level: entry?.level ?? 1,
-                        isZAwakened: entry?.isZAwakened ?? false,
-                        copies: stars > 0 ? Math.max(1, entry?.copies ?? 1) : 0,
-                      })
+                      dispatch(
+                        upsertInventoryEntry({
+                          characterId: c.id,
+                          stars,
+                          level: entry?.level ?? 1,
+                          isZAwakened: entry?.isZAwakened ?? false,
+                          copies: stars > 0 ? Math.max(1, entry?.copies ?? 1) : 0,
+                        }),
+                      )
                     }
                   />
-                </div>
-              </div>
-            </div>
+                }
+              />
+            </CharacterHoverCard>
           );
         })}
       </div>

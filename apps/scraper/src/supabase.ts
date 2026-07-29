@@ -1,19 +1,21 @@
 import type { Banner, Character, DblEvent } from "@autodbl/shared";
 
-/** Optional: if SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY are set, upsert the
+/** Optional: if SUPABASE_URL + SUPABASE_SECRET_KEY are set, upsert the
  * freshly scraped data into the public cache tables (see supabase/schema.sql)
  * via PostgREST, so the web app can read live data instead of the bundled
  * data/*.json snapshot. Silently skipped when not configured (e.g. local
- * dev without a Supabase project yet). */
+ * dev without a Supabase project yet). The secret key (sb_secret_...) is
+ * the new-format equivalent of the old service_role key: it bypasses RLS,
+ * so it must only ever be used server-side (here), never in apps/web. */
 export async function pushToSupabase(payload: {
   characters: Character[];
   events: DblEvent[];
   banners: Banner[];
 }): Promise<void> {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY;
   if (!url || !key) {
-    console.log("SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY not set, skipping cloud sync.");
+    console.log("SUPABASE_URL/SUPABASE_SECRET_KEY not set, skipping cloud sync.");
     return;
   }
 

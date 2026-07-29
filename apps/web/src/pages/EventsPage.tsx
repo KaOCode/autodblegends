@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Chip } from "@heroui/react";
 import { matchEventToOwnedCharacters, rankBannerPriority, type OwnedCharacter } from "@autodbl/shared";
-import { useApp } from "../lib/AppContext";
+import { useAppSelector } from "../store/hooks";
 
 const PRIORITY_STYLE: Record<string, string> = {
   high: "border-emerald-500/50 bg-emerald-500/10 text-emerald-300",
@@ -10,7 +10,10 @@ const PRIORITY_STYLE: Record<string, string> = {
 };
 
 export function EventsPage() {
-  const { characters, events, banners, inventory } = useApp();
+  const characters = useAppSelector((s) => s.gameData.characters);
+  const events = useAppSelector((s) => s.gameData.events);
+  const banners = useAppSelector((s) => s.gameData.banners);
+  const inventory = useAppSelector((s) => s.profile.inventory);
 
   const owned: OwnedCharacter[] = useMemo(() => {
     const charById = new Map(characters.map((c) => [c.id, c]));

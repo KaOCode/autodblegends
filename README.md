@@ -10,7 +10,7 @@ anmelden (Supabase).
 ```
 apps/
   scraper/   Node/TS-Scraper gegen dblegends.net (Community-Datenbank)
-  web/       React + Vite + TypeScript + Tailwind + HeroUI + eigene Animate-UI-Primitives
+  web/       React + Vite + TypeScript + Tailwind + HeroUI + Redux Toolkit + PWA
 packages/
   shared/    Gemeinsame Typen, Team-Optimizer, Event/Banner-Heuristiken
 data/        Vom Scraper geschriebene JSON-Snapshots (characters/events/banners)
@@ -68,15 +68,45 @@ npm run dev              # startet apps/web (kopiert data/ automatisch nach publ
 
 ### Optionaler Cloud-Sync (Supabase)
 
-1. Supabase-Projekt anlegen, `supabase/schema.sql` im SQL-Editor ausführen.
-2. `apps/web/.env.example` nach `.env` kopieren und `VITE_SUPABASE_URL` /
-   `VITE_SUPABASE_ANON_KEY` eintragen.
-3. Optional: `apps/scraper/.env.example` nach `.env` kopieren und
-   `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` (Service-Role-Key!) eintragen,
-   damit der Scraper den Cache in Supabase aktuell hält.
+Supabase nutzt seit 2025 ein neues API-Key-Format: **publishable** (client-
+safe, ersetzt den alten JWT-Anon-Key) und **secret** (server-only, ersetzt
+den alten Service-Role-Key). Beide findest du in Project Settings → API Keys.
+
+1. Supabase-Projekt anlegen.
+2. **`supabase/schema.sql` im SQL-Editor des Projekts ausführen** (Dashboard
+   → SQL Editor → Datei-Inhalt einfügen → Run). Das muss manuell passieren:
+   der Secret Key erlaubt zwar Lese-/Schreibzugriff auf bestehende Tabellen
+   (PostgREST), aber kein `CREATE TABLE` (DDL) aus der Ferne.
+3. `apps/web/.env.example` nach `apps/web/.env` kopieren und
+   `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` (den
+   `sb_publishable_...`-Key) eintragen.
+4. Optional: `apps/scraper/.env.example` nach `apps/scraper/.env` kopieren
+   und `SUPABASE_URL` / `SUPABASE_SECRET_KEY` (den `sb_secret_...`-Key)
+   eintragen, damit `npm run scrape` den Cache in Supabase aktuell hält.
 
 Ohne diese Variablen läuft die App komplett lokal (localStorage) – das ist
-der Standardfall, kein Account nötig.
+der Standardfall, kein Account nötig. `.env`-Dateien sind gitignored und
+werden nie committed.
+
+⚠️ Der Secret Key (`sb_secret_...`) umgeht Row Level Security und gehört
+ausschließlich in `apps/scraper/.env` (Server-seitig) – niemals in
+`apps/web`, niemals ins Git-Repo, niemals in Chat-Nachrichten teilen. Falls
+ein Secret Key doch mal irgendwo geteilt wurde: in den Supabase-Dashboard-
+Einstellungen rotieren.
+
+## State Management
+
+[Redux Toolkit](https://redux-toolkit.js.org/) (`apps/web/src/store/`):
+
+- `authSlice` – Supabase-Session (Magic-Link-Login/Logout als Thunks)
+- `profileSlice` – Inventar & Teams; jede Mutation schreibt sofort lokal
+  (via `store.subscribe` → localStorage) und, falls eingeloggt, zusätzlich
+  nach Supabase. `syncWithCloud` merged beim Login lokale und Cloud-Daten
+  (neuester `updatedAt` gewinnt).
+- `gameDataSlice` – Charaktere/Events/Banner aus `public/data/*.json`.
+
+`AppBootstrap.tsx` verkabelt den Supabase-Auth-Listener und den initialen
+Datenabruf beim App-Start.
 
 ## UI
 
@@ -90,6 +120,27 @@ zuverlässig erreichbar war. Die Komponenten sind API-kompatibel benannt und
 können bei Bedarf 1:1 durch echte animate-ui.com-Komponenten ersetzt werden
 (`npx shadcn add ...`).
 
+### Sorare-artige Detailkarte (4s Hover)
+
+`useLongHover` (`src/lib/useLongHover.ts`) feuert erst nach 4 Sekunden
+Hover/Tap-and-Hold. `CharacterHoverCard` positioniert dann per Portal die
+`CharacterDetailCard` neben der Karte: großes Artwork oben, farbiger
+Foil-Rand je nach Element, darunter Zugehörigkeit (Tags) sowie Leader-
+Skill/Main-Ability/Z-Abilities im Volltext – angelehnt an das Kartenlayout
+von Sorare.com, mit einem animierten Hologramm-Glanz beim Erscheinen.
+
+### PWA
+
+`vite-plugin-pwa` ist eingerichtet (Manifest, Icons, Service Worker mit
+`autoUpdate`, Offline-Caching für `/data/*.json`). Für einen lokalen PWA-Test:
+
+```bash
+npm run build -w apps/web && npm run preview -w apps/web
+```
+
+(Im Dev-Server ist der Service Worker bewusst deaktiviert, damit er sich
+nicht mit Vites HMR beißt – siehe `devOptions.enabled` in `vite.config.ts`.)
+
 ## Bekannte Einschränkungen
 
 - Der Optimizer ist heuristisch, kein echtes Meta-Tier-List-Wissen (siehe oben).
@@ -98,3 +149,5 @@ können bei Bedarf 1:1 durch echte animate-ui.com-Komponenten ersetzt werden
   abgeleitet (best effort, siehe `apps/scraper/src/dblegends.ts`).
 - Ein voller Scrape aller ~780 Charaktere dauert einige Minuten – für den
   täglichen Gebrauch empfiehlt sich ein geplanter Job statt manuellem Aufruf.
+- Die Detailkarten-Artworks nutzen `card_m_icons` von dblegends.net (mittlere
+  Auflösung); volle Layered-Art wird nicht gezogen.

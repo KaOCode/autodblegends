@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -62,7 +63,14 @@ async function main() {
   await writeFile(resolve(DATA_DIR, "banners.json"), JSON.stringify({ banners, fetchedAt: new Date().toISOString() }, null, 2));
   console.log(`Wrote ${banners.length} banners -> data/banners.json`);
 
-  await pushToSupabase({ characters, events, banners });
+  try {
+    await pushToSupabase({ characters, events, banners });
+  } catch (err) {
+    // Local data/*.json already written successfully above; Supabase sync
+    // is optional/best-effort, so don't fail the whole run over it (e.g.
+    // schema.sql not applied yet).
+    console.warn(`Supabase sync failed, local data/*.json is still up to date: ${(err as Error).message}`);
+  }
 
   console.log("Done.");
 }
