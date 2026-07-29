@@ -66,6 +66,21 @@ npm run scrape          # füllt data/*.json (Standard: 40 Charaktere, SCRAPE_LI
 npm run dev              # startet apps/web (kopiert data/ automatisch nach public/data/)
 ```
 
+**`npm run scrape` bricht mit `UND_ERR_CONNECT_TIMEOUT` / `fetch failed` ab?**
+Das ist ein lokales Netzwerkproblem, kein Bug im Scraper – Node erreicht
+`dblegends.net` nicht. Häufigste Ursachen (v.a. unter Windows):
+
+1. Firewall/Antivirus/VPN blockiert ausgehende Verbindungen von `node.exe`.
+2. Kaputtes/langsames IPv6 beim Provider – Node bevorzugt dann eine
+   IPv6-Adresse, die nicht antwortet, obwohl IPv4 funktioniert (der Scraper
+   erzwingt bereits `dns.setDefaultResultOrder("ipv4first")`, sollte also die
+   meisten Fälle abdecken).
+3. Kein Internetzugang / DNS-Problem im aktuellen Netzwerk.
+
+Zum Eingrenzen: `curl https://dblegends.net` bzw. `ping dblegends.net` in
+derselben Konsole ausprobieren. Klappt das auch nicht, liegt es am Netzwerk
+(Firewall/VPN/DNS), nicht am Projekt.
+
 ### Optionaler Cloud-Sync (Supabase)
 
 Supabase nutzt seit 2025 ein neues API-Key-Format: **publishable** (client-

@@ -1,10 +1,17 @@
 import "dotenv/config";
+import { setDefaultResultOrder } from "node:dns";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Character, CharacterDb } from "@autodbl/shared";
 import { fetchBanners, fetchCharacter, fetchCharacterIndex, fetchEvents, fetchTagMap, sleep } from "./dblegends.js";
 import { pushToSupabase } from "./supabase.js";
+
+// Node's fetch (undici) resolves DNS itself and, on some Windows/ISP setups,
+// picks a AAAA (IPv6) record that then hangs/times out even though IPv4
+// works fine (same symptom as a browser working but `npm run scrape`
+// throwing UND_ERR_CONNECT_TIMEOUT). Preferring IPv4 first avoids that.
+setDefaultResultOrder("ipv4first");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = resolve(__dirname, "../../../data");
