@@ -197,7 +197,7 @@ export function InventoryPage() {
                       >
                         ★ {entry.stars}
                       </span>
-                      {c.isZenkai && !entry.isZAwakened && (
+                      {c.isZenkai && !entry.isZAwakened && entry.stars >= 7 && (
                         <span
                           title="Kann zenkai-awakened werden"
                           className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300"

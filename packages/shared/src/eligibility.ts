@@ -110,13 +110,17 @@ export interface ZenkaiReadyCharacter {
   banner: Banner | null;
 }
 
+const ZENKAI_MIN_STARS = 7;
+
 /**
  * Owned characters that have a Zenkai Awakening available
  * (`character.isZenkai`, derived at scrape time from the card's own Zenkai
- * section) but that the user hasn't marked as already awakened
- * (`inventory.isZAwakened`). Cross-referenced against the "Zenkai"-type
- * banners dblegends.net lists on its summons page, so ones with a live
- * banner (i.e. actually actionable right now) sort first.
+ * section), are already rank 7+ (all gold stars - Zenkai Awakening only
+ * unlocks once the card is fully ranked up), and that the user hasn't
+ * marked as already awakened (`inventory.isZAwakened`). Cross-referenced
+ * against the "Zenkai"-type banners dblegends.net lists on its summons
+ * page, so ones with a live banner (i.e. actually actionable right now)
+ * sort first.
  */
 export function findZenkaiReadyCharacters(
   owned: OwnedCharacter[],
@@ -126,7 +130,7 @@ export function findZenkaiReadyCharacters(
   const zenkaiBanners = banners.filter((b) => b.type === "Zenkai" && new Date(b.endsAt).getTime() > now);
 
   return owned
-    .filter((o) => o.character.isZenkai && !o.inventory.isZAwakened)
+    .filter((o) => o.character.isZenkai && !o.inventory.isZAwakened && o.inventory.stars >= ZENKAI_MIN_STARS)
     .map((character) => ({
       character,
       banner:

@@ -104,10 +104,15 @@ export function CharacterModal({ character, onClose }: { character: Character; o
               </div>
             </div>
 
-            {character.isZenkai && !isZAwakened && (
+            {character.isZenkai && !isZAwakened && stars >= 7 && (
               <p className="mt-4 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-300">
                 ⚡ Kann zenkai-awakened werden – prüfe im "Events &amp; Banner"-Tab, ob das Zenkai-Banner gerade
                 verfügbar ist.
+              </p>
+            )}
+            {character.isZenkai && !isZAwakened && stars > 0 && stars < 7 && (
+              <p className="mt-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/40">
+                Zenkai-Awakening verfügbar, sobald 7 goldene Sterne erreicht sind ({stars}/7).
               </p>
             )}
             <label className="mt-4 flex items-center gap-2 text-sm text-white/70">
