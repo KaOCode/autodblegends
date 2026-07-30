@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { suggestCharactersForEvent, type DblEvent, type OwnedCharacter } from "@autodbl/shared";
 import { useEffect, useMemo } from "react";
 import { useAppSelector } from "../store/hooks";
+import { GameImage } from "./GameImage";
 
 export function EventModal({
   event,
@@ -53,6 +54,11 @@ export function EventModal({
           onClick={(e) => e.stopPropagation()}
           className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0d1020] p-5"
         >
+          <GameImage
+            base={`https://dblegends.net/assets/events/${event.img}`}
+            alt={event.name}
+            className="mb-4 h-40 w-full rounded-xl object-cover"
+          />
           <div className="mb-4 flex items-start justify-between">
             <div>
               <h2 className="text-lg font-bold text-white">{event.name}</h2>

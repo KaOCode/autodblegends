@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Banner, Character } from "@autodbl/shared";
+import { GameImage } from "./GameImage";
 
 export function BannerModal({
   banner,
@@ -38,6 +39,11 @@ export function BannerModal({
           onClick={(e) => e.stopPropagation()}
           className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0d1020] p-5"
         >
+          <GameImage
+            base={`https://dblegends.net/assets/gasha/${banner.img}`}
+            alt={banner.name}
+            className="mb-4 h-40 w-full rounded-xl object-cover"
+          />
           <div className="mb-4 flex items-start justify-between">
             <div>
               <h2 className="text-lg font-bold text-white">{banner.name}</h2>

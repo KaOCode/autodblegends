@@ -14,6 +14,18 @@ const RARITY_CHIP_STYLE: Record<string, string> = {
   HERO: "border-emerald-500/60 text-emerald-300",
 };
 
+const COLOR_ORDER = ["RED", "BLU", "GRN", "YEL", "PUR", "LGT", "DRK"];
+
+const COLOR_CHIP_TEXT: Record<string, string> = {
+  RED: "border-red-500/60 text-red-300",
+  BLU: "border-blue-500/60 text-blue-300",
+  GRN: "border-emerald-500/60 text-emerald-300",
+  YEL: "border-amber-400/60 text-amber-300",
+  PUR: "border-fuchsia-500/60 text-fuchsia-300",
+  DRK: "border-slate-400/60 text-slate-300",
+  LGT: "border-white/60 text-white",
+};
+
 export function InventoryPage() {
   const characters = useAppSelector((s) => s.gameData.characters);
   const loading = useAppSelector((s) => s.gameData.loading);
@@ -21,17 +33,30 @@ export function InventoryPage() {
   const [search, setSearch] = useState("");
   const [ownedOnly, setOwnedOnly] = useState(false);
   const [rarities, setRarities] = useState<Set<string>>(new Set());
+  const [colors, setColors] = useState<Set<string>>(new Set());
   const [llOnly, setLlOnly] = useState(false);
   const [zenkaiOnly, setZenkaiOnly] = useState(false);
   const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
 
   const inventoryByChar = useMemo(() => new Map(inventory.map((e) => [e.characterId, e])), [inventory]);
 
-  function toggleRarity(r: string) {
-    setRarities((prev) => {
+  const availableColors = useMemo(() => {
+    const present = new Set(characters.map((c) => c.color));
+    return [...present].sort((a, b) => {
+      const ai = COLOR_ORDER.indexOf(a);
+      const bi = COLOR_ORDER.indexOf(b);
+      if (ai === -1 && bi === -1) return a.localeCompare(b);
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
+  }, [characters]);
+
+  function toggleInSet(setter: (fn: (prev: Set<string>) => Set<string>) => void, value: string) {
+    setter((prev) => {
       const next = new Set(prev);
-      if (next.has(r)) next.delete(r);
-      else next.add(r);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
       return next;
     });
   }
@@ -42,11 +67,12 @@ export function InventoryPage() {
       if (q && !c.name.toLowerCase().includes(q) && !c.card.toLowerCase().includes(q)) return false;
       if (ownedOnly && !inventoryByChar.has(c.id)) return false;
       if (rarities.size > 0 && !rarities.has(c.rarity)) return false;
+      if (colors.size > 0 && !colors.has(c.color)) return false;
       if (llOnly && !c.isLegendsLimited) return false;
       if (zenkaiOnly && !c.isZenkai) return false;
       return true;
     });
-  }, [characters, search, ownedOnly, rarities, llOnly, zenkaiOnly, inventoryByChar]);
+  }, [characters, search, ownedOnly, rarities, colors, llOnly, zenkaiOnly, inventoryByChar]);
 
   const openCharacter = openCharacterId != null ? characters.find((c) => c.id === openCharacterId) : undefined;
 
@@ -69,14 +95,14 @@ export function InventoryPage() {
         </span>
       </div>
 
-      <div className="mb-4 flex flex-wrap items-center gap-2">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         {RARITIES.map((r) => {
           const active = rarities.has(r);
           return (
             <button
               key={r}
               type="button"
-              onClick={() => toggleRarity(r)}
+              onClick={() => toggleInSet(setRarities, r)}
               className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
                 active ? `${RARITY_CHIP_STYLE[r]} bg-white/10` : "border-white/10 text-white/40 hover:text-white/70"
               }`}
@@ -107,11 +133,31 @@ export function InventoryPage() {
           />
           Zenkai
         </label>
-        {(rarities.size > 0 || llOnly || zenkaiOnly) && (
+      </div>
+
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        {availableColors.map((c) => {
+          const active = colors.has(c);
+          const style = COLOR_CHIP_TEXT[c] ?? "border-white/20 text-white/60";
+          return (
+            <button
+              key={c}
+              type="button"
+              onClick={() => toggleInSet(setColors, c)}
+              className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                active ? `${style} bg-white/10` : "border-white/10 text-white/40 hover:text-white/70"
+              }`}
+            >
+              {c}
+            </button>
+          );
+        })}
+        {(rarities.size > 0 || colors.size > 0 || llOnly || zenkaiOnly) && (
           <button
             type="button"
             onClick={() => {
               setRarities(new Set());
+              setColors(new Set());
               setLlOnly(false);
               setZenkaiOnly(false);
             }}

@@ -2,12 +2,14 @@ import type { ReactNode } from "react";
 import type { Character } from "@autodbl/shared";
 import { Chip } from "@heroui/react";
 
-const COLOR_STYLES: Record<string, string> = {
+export const COLOR_STYLES: Record<string, string> = {
   RED: "border-red-500/60 bg-red-500/10",
   BLU: "border-blue-500/60 bg-blue-500/10",
   GRN: "border-emerald-500/60 bg-emerald-500/10",
   YEL: "border-amber-400/60 bg-amber-400/10",
   PUR: "border-fuchsia-500/60 bg-fuchsia-500/10",
+  DRK: "border-slate-400/60 bg-slate-400/10",
+  LGT: "border-white/60 bg-white/10",
 };
 
 export function CharacterCard({

@@ -5,6 +5,7 @@ import { useAppSelector } from "../store/hooks";
 import { EventModal } from "../components/EventModal";
 import { CharacterModal } from "../components/CharacterModal";
 import { BannerModal } from "../components/BannerModal";
+import { GameImage } from "../components/GameImage";
 
 const PRIORITY_STYLE: Record<string, string> = {
   high: "border-emerald-500/50 bg-emerald-500/10 text-emerald-300",
@@ -68,34 +69,41 @@ export function EventsPage() {
                 key={event.id}
                 type="button"
                 onClick={() => setOpenEventId(event.id)}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-amber-400/40 hover:bg-white/10"
+                className="flex gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-amber-400/40 hover:bg-white/10"
               >
-                <p className="text-sm font-semibold text-white">{event.name}</p>
-                <p className="text-xs text-white/40">
-                  bis {new Date(event.endsAt).toLocaleDateString("de-DE")}
-                </p>
-                {matches.length > 0 ? (
-                  <p className="mt-2 text-xs text-emerald-300">
-                    Du besitzt passende Charaktere:{" "}
-                    {matches.map((m, i) => (
-                      <span key={m.character.id}>
-                        {i > 0 && ", "}
-                        <span
-                          role="link"
-                          className="underline decoration-dotted hover:text-emerald-200"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOpenCharacterId(m.character.id);
-                          }}
-                        >
-                          {m.character.name}
-                        </span>
-                      </span>
-                    ))}
+                <GameImage
+                  base={`https://dblegends.net/assets/events/${event.img}`}
+                  alt={event.name}
+                  className="h-14 w-24 shrink-0 rounded-lg object-cover"
+                />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-white">{event.name}</p>
+                  <p className="text-xs text-white/40">
+                    bis {new Date(event.endsAt).toLocaleDateString("de-DE")}
                   </p>
-                ) : (
-                  <p className="mt-2 text-xs text-white/30">Kein direkter Charakter-Treffer erkannt.</p>
-                )}
+                  {matches.length > 0 ? (
+                    <p className="mt-2 text-xs text-emerald-300">
+                      Du besitzt passende Charaktere:{" "}
+                      {matches.map((m, i) => (
+                        <span key={m.character.id}>
+                          {i > 0 && ", "}
+                          <span
+                            role="link"
+                            className="underline decoration-dotted hover:text-emerald-200"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setOpenCharacterId(m.character.id);
+                            }}
+                          >
+                            {m.character.name}
+                          </span>
+                        </span>
+                      ))}
+                    </p>
+                  ) : (
+                    <p className="mt-2 text-xs text-white/30">Kein direkter Charakter-Treffer erkannt.</p>
+                  )}
+                </div>
               </button>
             );
           })}
@@ -116,11 +124,16 @@ export function EventsPage() {
               key={banner.id}
               type="button"
               onClick={() => setOpenBannerId(banner.id)}
-              className={`flex w-full items-center justify-between rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${PRIORITY_STYLE[priority]}`}
+              className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${PRIORITY_STYLE[priority]}`}
             >
-              <div>
-                <p className="font-medium">{banner.name}</p>
-                <p className="text-xs opacity-70">{reason}</p>
+              <GameImage
+                base={`https://dblegends.net/assets/gasha/${banner.img}`}
+                alt={banner.name}
+                className="h-12 w-20 shrink-0 rounded-md object-cover"
+              />
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-medium">{banner.name}</p>
+                <p className="truncate text-xs opacity-70">{reason}</p>
               </div>
               <Chip size="sm" color={priority === "high" ? "success" : priority === "medium" ? "warning" : "default"}>
                 <Chip.Label>{priority}</Chip.Label>
