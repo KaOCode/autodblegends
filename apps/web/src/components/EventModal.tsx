@@ -1,9 +1,34 @@
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import type { DblEvent } from "@autodbl/shared";
-import { useEffect } from "react";
+import { suggestCharactersForEvent, type DblEvent, type OwnedCharacter } from "@autodbl/shared";
+import { useEffect, useMemo } from "react";
+import { useAppSelector } from "../store/hooks";
 
-export function EventModal({ event, onClose }: { event: DblEvent; onClose: () => void }) {
+export function EventModal({
+  event,
+  onClose,
+  onOpenCharacter,
+}: {
+  event: DblEvent;
+  onClose: () => void;
+  onOpenCharacter: (characterId: number) => void;
+}) {
+  const characters = useAppSelector((s) => s.gameData.characters);
+  const inventory = useAppSelector((s) => s.profile.inventory);
+
+  const owned: OwnedCharacter[] = useMemo(() => {
+    const charById = new Map(characters.map((c) => [c.id, c]));
+    return inventory
+      .filter((e) => e.stars > 0)
+      .map((inv) => {
+        const character = charById.get(inv.characterId);
+        return character ? { character, inventory: inv } : null;
+      })
+      .filter((v): v is OwnedCharacter => v !== null);
+  }, [characters, inventory]);
+
+  const suggestions = useMemo(() => suggestCharactersForEvent(event, owned), [event, owned]);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -44,6 +69,42 @@ export function EventModal({ event, onClose }: { event: DblEvent; onClose: () =>
               ✕
             </button>
           </div>
+
+          {suggestions.length > 0 && (
+            <div className="mb-5">
+              <p className="mb-2 text-xs font-bold uppercase tracking-wide text-amber-300/80">
+                Empfohlen aus deinem Inventar
+              </p>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {suggestions.map(({ character, matchedHints }) => (
+                  <button
+                    key={character.character.id}
+                    type="button"
+                    onClick={() => onOpenCharacter(character.character.id)}
+                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 p-2 text-left transition-colors hover:border-amber-400/40 hover:bg-white/10"
+                  >
+                    <img
+                      src={`https://dblegends.net/assets/card_icons/BChaIco_${character.character.img}.webp`}
+                      alt={character.character.name}
+                      className="h-10 w-10 rounded-md object-cover"
+                      loading="lazy"
+                    />
+                    <div className="min-w-0">
+                      <p className="truncate text-sm text-white">{character.character.name}</p>
+                      <p className="truncate text-xs text-white/40">
+                        {matchedHints.length > 0 ? `Passt zu: ${matchedHints.join(", ")}` : "Stärkster Charakter"}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {owned.length === 0 && (
+            <p className="mb-5 text-xs text-white/30">
+              Füge Charaktere zu deinem Inventar hinzu, um hier Empfehlungen zu sehen.
+            </p>
+          )}
 
           {!event.difficulties || event.difficulties.length === 0 ? (
             <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/50">

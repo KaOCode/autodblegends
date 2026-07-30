@@ -58,17 +58,27 @@ generische Zuordnung nach Modus (siehe `suggestSupportItems`).
 
 - **Events**: Charaktere aus dem Inventar werden gegen den Event-Namen
   gematcht (Namens-Substring), um zu zeigen, ob du thematisch passende
-  Charaktere besitzt.
+  Charaktere besitzt. Zusätzlich schlägt `suggestCharactersForEvent` im
+  `EventModal` konkrete Charaktere aus deinem Inventar vor: die von
+  dblegends.net gescrapten Challenge-Texte einer Stage (z.B. "Battle with
+  Son Family", "Battle with 2 Element: PUR characters or more") enthalten
+  fast immer wörtlich einen Tag- oder Farbnamen, der direkt gegen die Tags
+  des Charakters gematcht wird – kein Kartenwissen nötig, nur Textabgleich.
+  Ohne Treffer fällt es auf eine reine Stärke-Rangliste zurück
+  (`characterPowerScore`), damit der Abschnitt nie leer ist.
 - **Banner-Priorität**: Banner-Namen enthalten fast immer den Charakternamen
   im Klartext (z.B. "ZENKAI AWAKENING - Goku & Bardock -"). Daraus wird der
   Charakter erkannt und die Priorität aus Seltenheit/Zenkai-Status und
-  eigenem Besitzstand abgeleitet.
+  eigenem Besitzstand abgeleitet. Klick auf einen Banner öffnet ein
+  `BannerModal` mit allen erkannten Charakter-Karten (klickbar zum
+  `CharacterModal`).
 
 ## Setup
 
 ```bash
 npm install
-npm run scrape          # füllt data/*.json (Standard: 40 Charaktere, SCRAPE_LIMIT=0 für alle ~780)
+npm run scrape          # füllt data/*.json mit dem vollen Roster (~780 Charaktere, dauert ~2-3 Min.)
+                         # für einen schnellen Testlauf: SCRAPE_LIMIT=25 npm run scrape
 npm run dev              # startet apps/web (kopiert data/ automatisch nach public/data/)
 ```
 

@@ -58,6 +58,14 @@ export interface BuildTeamOptions {
   eventTagHint?: string;
 }
 
+/** Rarity/stats/stars power estimate for one owned card, independent of any
+ * team/leader context. Exported so other heuristics (e.g. event character
+ * suggestions in eligibility.ts) can rank owned characters consistently
+ * without duplicating the formula. */
+export function characterPowerScore(entry: OwnedCharacter): number {
+  return baseScore(entry);
+}
+
 function baseScore(entry: OwnedCharacter): number {
   const { character: c, inventory: inv } = entry;
   const statSum =

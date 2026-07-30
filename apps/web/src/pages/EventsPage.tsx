@@ -4,6 +4,7 @@ import { matchEventToOwnedCharacters, rankBannerPriority, type OwnedCharacter } 
 import { useAppSelector } from "../store/hooks";
 import { EventModal } from "../components/EventModal";
 import { CharacterModal } from "../components/CharacterModal";
+import { BannerModal } from "../components/BannerModal";
 
 const PRIORITY_STYLE: Record<string, string> = {
   high: "border-emerald-500/50 bg-emerald-500/10 text-emerald-300",
@@ -18,6 +19,7 @@ export function EventsPage() {
   const inventory = useAppSelector((s) => s.profile.inventory);
   const [openEventId, setOpenEventId] = useState<number | null>(null);
   const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
+  const [openBannerId, setOpenBannerId] = useState<number | null>(null);
 
   const owned: OwnedCharacter[] = useMemo(() => {
     const charById = new Map(characters.map((c) => [c.id, c]));
@@ -45,6 +47,13 @@ export function EventsPage() {
 
   const openEvent = openEventId != null ? events.find((e) => e.id === openEventId) : undefined;
   const openCharacter = openCharacterId != null ? characters.find((c) => c.id === openCharacterId) : undefined;
+  const openBanner = openBannerId != null ? banners.find((b) => b.id === openBannerId) : undefined;
+  const openBannerFeaturedCharacters = useMemo(() => {
+    if (!openBanner) return [];
+    return characters.filter((c) =>
+      openBanner.guessedFeaturedCharacterNames.some((n) => n.toLowerCase() === c.name.toLowerCase()),
+    );
+  }, [openBanner, characters]);
 
   return (
     <div className="space-y-10">
@@ -103,9 +112,11 @@ export function EventsPage() {
         </p>
         <div className="space-y-2">
           {bannerRanking.map(({ banner, priority, reason }) => (
-            <div
+            <button
               key={banner.id}
-              className={`flex items-center justify-between rounded-lg border p-3 text-sm ${PRIORITY_STYLE[priority]}`}
+              type="button"
+              onClick={() => setOpenBannerId(banner.id)}
+              className={`flex w-full items-center justify-between rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${PRIORITY_STYLE[priority]}`}
             >
               <div>
                 <p className="font-medium">{banner.name}</p>
@@ -114,14 +125,34 @@ export function EventsPage() {
               <Chip size="sm" color={priority === "high" ? "success" : priority === "medium" ? "warning" : "default"}>
                 <Chip.Label>{priority}</Chip.Label>
               </Chip>
-            </div>
+            </button>
           ))}
           {bannerRanking.length === 0 && <p className="text-sm text-white/40">Keine Banner-Daten geladen.</p>}
         </div>
       </section>
 
-      {openEvent && <EventModal event={openEvent} onClose={() => setOpenEventId(null)} />}
+      {openEvent && (
+        <EventModal
+          event={openEvent}
+          onClose={() => setOpenEventId(null)}
+          onOpenCharacter={(id) => {
+            setOpenEventId(null);
+            setOpenCharacterId(id);
+          }}
+        />
+      )}
       {openCharacter && <CharacterModal character={openCharacter} onClose={() => setOpenCharacterId(null)} />}
+      {openBanner && (
+        <BannerModal
+          banner={openBanner}
+          featuredCharacters={openBannerFeaturedCharacters}
+          onClose={() => setOpenBannerId(null)}
+          onOpenCharacter={(id) => {
+            setOpenBannerId(null);
+            setOpenCharacterId(id);
+          }}
+        />
+      )}
     </div>
   );
 }

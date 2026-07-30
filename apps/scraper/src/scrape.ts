@@ -27,10 +27,11 @@ const DATA_DIR = resolve(__dirname, "../../../data");
 const CONCURRENCY = 5;
 const DELAY_BETWEEN_BATCHES_MS = 300;
 
-// Full DBL roster is 700+ cards. Scraping all of them on every run is slow
-// and unnecessarily hammers dblegends.net, so default to a small sample and
-// let CI / a scheduled job pass SCRAPE_LIMIT=0 (no limit) for a full sync.
-const LIMIT = process.env.SCRAPE_LIMIT ? Number(process.env.SCRAPE_LIMIT) : 40;
+// Full DBL roster is 780+ cards; a full run takes ~2-3 min at this
+// concurrency/delay, which is fine as the default so `npm run scrape` "just
+// works" without silently truncating the roster. Pass SCRAPE_LIMIT=<n> for
+// a quick partial run while iterating on the scraper itself.
+const LIMIT = process.env.SCRAPE_LIMIT ? Number(process.env.SCRAPE_LIMIT) : 0;
 
 async function scrapeCharacters(): Promise<Character[]> {
   console.log("Fetching character index + tag map...");
