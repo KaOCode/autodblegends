@@ -104,7 +104,7 @@ export interface Banner {
 /** One card the user owns, with their progression on it. */
 export interface InventoryEntry {
   characterId: number;
-  /** 1-7 zeni/rank stars as shown in-game */
+  /** 0-14 rank stars as shown in-game: 1-7 gold (Rank-Up Medals), 8-14 red (extra copies/pulls) */
   stars: number;
   level: number;
   isZAwakened: boolean;

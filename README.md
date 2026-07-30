@@ -125,6 +125,17 @@ ausschließlich in `apps/scraper/.env` (Server-seitig) – niemals in
 ein Secret Key doch mal irgendwo geteilt wurde: in den Supabase-Dashboard-
 Einstellungen rotieren.
 
+**Migration (nur falls `schema.sql` schon vor dem 14-Sterne-Support
+ausgeführt wurde):** Die `stars`-Spalte hatte ursprünglich
+`check (stars between 0 and 7)`. DBL rankt Charaktere aber über 7 goldene
+*und* 7 weitere rote Sterne (0-14 gesamt). Bestehende Installationen müssen
+den Constraint einmalig im SQL-Editor nachziehen:
+
+```sql
+alter table public.user_inventory drop constraint user_inventory_stars_check;
+alter table public.user_inventory add check (stars between 0 and 14);
+```
+
 ## State Management
 
 [Redux Toolkit](https://redux-toolkit.js.org/) (`apps/web/src/store/`):

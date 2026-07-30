@@ -32,7 +32,7 @@ const SCORING_WEIGHTS = {
   rarity: 8,
   zenkai: 6,
   legendsLimited: 4,
-  starLevel: 3, // per star, 1-7
+  starLevel: 1.5, // per star, 0-14 (7 gold + 7 red)
   sharedTagWithLeader: 10,
   sharedTraitWithLeader: 4,
   colorDiversityBonus: 3,
@@ -79,7 +79,7 @@ function baseScore(entry: OwnedCharacter): number {
   score += (RARITY_WEIGHT[c.rarity] ?? 1) * SCORING_WEIGHTS.rarity;
   if (c.isZenkai) score += SCORING_WEIGHTS.zenkai;
   if (c.isLegendsLimited) score += SCORING_WEIGHTS.legendsLimited;
-  score += Math.min(inv.stars, 7) * SCORING_WEIGHTS.starLevel;
+  score += Math.min(inv.stars, 14) * SCORING_WEIGHTS.starLevel;
   return score;
 }
 

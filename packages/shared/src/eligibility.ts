@@ -40,7 +40,7 @@ export function rankBannerPriority(
   }
 
   const alreadyOwnedMaxed = featured.every(
-    (c) => ownedIds.has(c.id) && owned.find((o) => o.character.id === c.id)!.inventory.stars >= 7,
+    (c) => ownedIds.has(c.id) && owned.find((o) => o.character.id === c.id)!.inventory.stars >= 14,
   );
   if (alreadyOwnedMaxed) {
     return { banner, priority: "low", reason: "Charakter(e) bereits auf max. Sterne" };

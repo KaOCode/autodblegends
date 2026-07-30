@@ -190,7 +190,11 @@ export function InventoryPage() {
                 right={
                   entry ? (
                     <div className="flex shrink-0 flex-col items-end gap-1">
-                      <span className="rounded-full bg-amber-400/20 px-2 py-1 text-xs font-semibold text-amber-300">
+                      <span
+                        className={`rounded-full px-2 py-1 text-xs font-semibold ${
+                          entry.stars > 7 ? "bg-red-500/20 text-red-400" : "bg-amber-400/20 text-amber-300"
+                        }`}
+                      >
                         ★ {entry.stars}
                       </span>
                       {c.isZenkai && !entry.isZAwakened && (

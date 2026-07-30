@@ -78,7 +78,7 @@ create policy "banners are publicly readable" on public.banners
 create table if not exists public.user_inventory (
   user_id uuid not null references auth.users (id) on delete cascade,
   character_id integer not null,
-  stars smallint not null check (stars between 0 and 7),
+  stars smallint not null check (stars between 0 and 14),
   level integer not null default 5000,
   is_z_awakened boolean not null default false,
   updated_at timestamptz not null default now(),
