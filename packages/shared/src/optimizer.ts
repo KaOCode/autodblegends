@@ -54,8 +54,12 @@ export interface OwnedCharacter {
 export interface BuildTeamOptions {
   mode: TeamMode;
   owned: OwnedCharacter[];
-  /** e.g. a CHOICE event's required tag name, matched loosely against character tags */
-  eventTagHint?: string;
+  /** tag/color substrings relevant to a specific event (see deriveEventTagHints
+   * in eligibility.ts), matched loosely against each candidate's own tags */
+  eventTagHints?: string[];
+  /** build the team around this specific owned character instead of letting
+   * the optimizer pick the leader */
+  fixedLeaderId?: number;
 }
 
 /** Rarity/stats/stars power estimate for one owned card, independent of any
@@ -102,7 +106,7 @@ function synergyScore(
   candidate: OwnedCharacter,
   leader: OwnedCharacter,
   mode: TeamMode,
-  eventTagHint?: string,
+  eventTagHints?: string[],
 ): { score: number; reasons: string[] } {
   const reasons: string[] = [];
   let score = 0;
@@ -124,12 +128,15 @@ function synergyScore(
     reasons.push(`${keywordHits} passende Fähigkeit(en) für Modus "${mode}"`);
   }
 
-  if (eventTagHint) {
-    const hint = eventTagHint.toLowerCase();
-    const matches = candidate.character.tags.some((t) => t.toLowerCase().includes(hint));
-    if (matches) {
-      score += SCORING_WEIGHTS.eventTagMatch;
-      reasons.push(`Tag passt zum Event-Hinweis "${eventTagHint}"`);
+  if (eventTagHints && eventTagHints.length > 0) {
+    const candidateTags = [...candidate.character.tags, candidate.character.color].map((t) => t.toLowerCase());
+    const matched = eventTagHints.filter((hint) => {
+      const h = hint.toLowerCase();
+      return candidateTags.some((t) => t === h || t.includes(h) || h.includes(t));
+    });
+    if (matched.length > 0) {
+      score += matched.length * SCORING_WEIGHTS.eventTagMatch;
+      reasons.push(`Passt zu Event-Anforderung(en): ${matched.join(", ")}`);
     }
   }
 
@@ -163,9 +170,69 @@ function suggestSupportItems(mode: TeamMode, team: OwnedCharacter[]): SupportIte
   return [SUPPORT_ITEM_CATALOG[4], SUPPORT_ITEM_CATALOG[0]];
 }
 
+interface CandidateTeam {
+  team: OwnedCharacter[];
+  leader: OwnedCharacter;
+  score: number;
+  reasoning: string[];
+}
+
+function buildTeamAroundLeader(
+  leader: OwnedCharacter,
+  owned: OwnedCharacter[],
+  mode: TeamMode,
+  eventTagHints: string[] | undefined,
+  leaderReason: string,
+): CandidateTeam {
+  const rest = owned.filter((o) => o.character.id !== leader.character.id);
+  const scored = rest.map((candidate) => {
+    const { score: synergy, reasons } = synergyScore(candidate, leader, mode, eventTagHints);
+    const total = baseScore(candidate) + synergy;
+    return { candidate, total, reasons };
+  });
+  scored.sort((a, b) => b.total - a.total);
+
+  const members = scored.slice(0, TEAM_SIZE - 1);
+  const team = [leader, ...members.map((m) => m.candidate)];
+  const memberReasons = members.flatMap((m) => m.reasons);
+
+  const score =
+    baseScore(leader) * 1.5 + // leader counts extra since their leader skill affects the whole team
+    members.reduce((n, m) => n + m.total, 0) +
+    colorDiversity(team);
+
+  return { team, leader, score, reasoning: [leaderReason, ...memberReasons] };
+}
+
+function toBuiltTeam(candidate: CandidateTeam, mode: TeamMode): BuiltTeam {
+  return {
+    mode,
+    slots: candidate.team.map((t) => ({
+      characterId: t.character.id,
+      isLeader: t.character.id === candidate.leader.character.id,
+    })),
+    suggestedSupportItems: suggestSupportItems(mode, candidate.team),
+    score: Math.round(candidate.score * 100) / 100,
+    reasoning: candidate.reasoning,
+  };
+}
+
 export function buildOptimalTeam(options: BuildTeamOptions): BuiltTeam | null {
-  const { mode, owned, eventTagHint } = options;
+  const { mode, owned, eventTagHints, fixedLeaderId } = options;
   if (owned.length === 0) return null;
+
+  if (fixedLeaderId != null) {
+    const leader = owned.find((o) => o.character.id === fixedLeaderId);
+    if (!leader) return null;
+    const candidate = buildTeamAroundLeader(
+      leader,
+      owned,
+      mode,
+      eventTagHints,
+      `${leader.character.name} als Leader gewählt (manuell)`,
+    );
+    return toBuiltTeam(candidate, mode);
+  }
 
   const withLeaderSkill = owned.filter((o) => o.character.leaderSkill);
   const leaderPool = (withLeaderSkill.length > 0 ? withLeaderSkill : owned)
@@ -174,42 +241,39 @@ export function buildOptimalTeam(options: BuildTeamOptions): BuiltTeam | null {
     .slice(0, LEADER_CANDIDATE_POOL)
     .map((x) => x.o);
 
-  let best: { team: OwnedCharacter[]; leader: OwnedCharacter; score: number; reasoning: string[] } | null = null;
-
+  let best: CandidateTeam | null = null;
   for (const leader of leaderPool) {
-    const rest = owned.filter((o) => o.character.id !== leader.character.id);
-    const scored = rest.map((candidate) => {
-      const { score: synergy, reasons } = synergyScore(candidate, leader, mode, eventTagHint);
-      const total = baseScore(candidate) + synergy;
-      return { candidate, total, reasons };
-    });
-    scored.sort((a, b) => b.total - a.total);
-
-    const members = scored.slice(0, TEAM_SIZE - 1);
-    const team = [leader, ...members.map((m) => m.candidate)];
-    const leaderReasons = [`${leader.character.name} als Leader gewählt (bester Basis-/Synergie-Score)`];
-    const memberReasons = members.flatMap((m) => m.reasons);
-
-    const total =
-      baseScore(leader) * 1.5 + // leader counts extra since their leader skill affects the whole team
-      members.reduce((n, m) => n + m.total, 0) +
-      colorDiversity(team);
-
-    if (!best || total > best.score) {
-      best = { team, leader, score: total, reasoning: [...leaderReasons, ...memberReasons] };
-    }
+    const candidate = buildTeamAroundLeader(
+      leader,
+      owned,
+      mode,
+      eventTagHints,
+      `${leader.character.name} als Leader gewählt (bester Basis-/Synergie-Score)`,
+    );
+    if (!best || candidate.score > best.score) best = candidate;
   }
 
   if (!best) return null;
+  return toBuiltTeam(best, mode);
+}
 
-  return {
-    mode,
-    slots: best.team.map((t) => ({
-      characterId: t.character.id,
-      isLeader: t.character.id === best!.leader.character.id,
-    })),
-    suggestedSupportItems: suggestSupportItems(mode, best.team),
-    score: Math.round(best.score * 100) / 100,
-    reasoning: best.reasoning,
-  };
+export interface LeaderCandidate {
+  character: OwnedCharacter;
+  score: number;
+  hasLeaderSkill: boolean;
+}
+
+/** Ranks the owned roster by how well-suited each card is to be a leader:
+ * characters with their own Leader Skill ability come first (that's the
+ * whole point of picking a leader deliberately), sorted by power score
+ * within each group. Used to populate a "choose your leader" picker instead
+ * of leaving leader selection fully automatic. */
+export function rankLeaderCandidates(owned: OwnedCharacter[], limit = 20): LeaderCandidate[] {
+  return owned
+    .map((o) => ({ character: o, score: baseScore(o), hasLeaderSkill: Boolean(o.character.leaderSkill) }))
+    .sort((a, b) => {
+      if (a.hasLeaderSkill !== b.hasLeaderSkill) return a.hasLeaderSkill ? -1 : 1;
+      return b.score - a.score;
+    })
+    .slice(0, limit);
 }

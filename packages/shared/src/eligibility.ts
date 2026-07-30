@@ -68,6 +68,12 @@ export interface SuggestedEventCharacter {
 
 const SUGGESTION_LIMIT = 7;
 
+function getEventChallengeTexts(event: DblEvent): string[] {
+  return (event.difficulties ?? [])
+    .flatMap((d) => d.stages)
+    .flatMap((s) => s.challenges.map((c) => c.text.toLowerCase()));
+}
+
 /**
  * Recommends owned characters for a specific event. Challenge text scraped
  * from the event page (e.g. "Battle with Son Family", "Battle with 2
@@ -83,9 +89,7 @@ export function suggestCharactersForEvent(
 ): SuggestedEventCharacter[] {
   if (owned.length === 0) return [];
 
-  const challengeTexts = (event.difficulties ?? [])
-    .flatMap((d) => d.stages)
-    .flatMap((s) => s.challenges.map((c) => c.text.toLowerCase()));
+  const challengeTexts = getEventChallengeTexts(event);
 
   const scored = owned.map((entry) => {
     const candidates = [...entry.character.tags, entry.character.color];
@@ -102,6 +106,26 @@ export function suggestCharactersForEvent(
   });
 
   return ranked.slice(0, SUGGESTION_LIMIT).map((r) => ({ character: r.entry, matchedHints: r.matchedHints }));
+}
+
+/**
+ * Turns an event's scraped challenge text into a plain list of tag/color
+ * substrings (e.g. ["Son Family", "PUR"]) by checking which tags/colors from
+ * the full character roster actually appear in that text. Feed this into
+ * `buildOptimalTeam({ eventTagHints })` so the Team Builder can be driven by
+ * picking an event from a list instead of typing a tag hint by hand.
+ */
+export function deriveEventTagHints(event: DblEvent, allCharacters: Character[]): string[] {
+  const challengeTexts = getEventChallengeTexts(event);
+  if (challengeTexts.length === 0) return [];
+
+  const vocabulary = new Set<string>();
+  for (const c of allCharacters) {
+    for (const tag of c.tags) vocabulary.add(tag);
+    vocabulary.add(c.color);
+  }
+
+  return [...vocabulary].filter((tag) => challengeTexts.some((t) => t.includes(tag.toLowerCase())));
 }
 
 export interface ZenkaiReadyCharacter {

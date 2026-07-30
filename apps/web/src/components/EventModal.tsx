@@ -1,9 +1,20 @@
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { suggestCharactersForEvent, type DblEvent, type OwnedCharacter } from "@autodbl/shared";
-import { useEffect, useMemo } from "react";
-import { useAppSelector } from "../store/hooks";
+import {
+  buildOptimalTeam,
+  deriveEventTagHints,
+  suggestCharactersForEvent,
+  type BuiltTeam,
+  type DblEvent,
+  type OwnedCharacter,
+} from "@autodbl/shared";
+import { useEffect, useMemo, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { saveTeam } from "../store/profileSlice";
 import { GameImage } from "./GameImage";
+import { CharacterCard } from "./CharacterCard";
+import { StaggerReveal } from "./animate-ui/StaggerReveal";
+import { SlidingNumber } from "./animate-ui/SlidingNumber";
 
 export function EventModal({
   event,
@@ -14,8 +25,11 @@ export function EventModal({
   onClose: () => void;
   onOpenCharacter: (characterId: number) => void;
 }) {
+  const dispatch = useAppDispatch();
   const characters = useAppSelector((s) => s.gameData.characters);
   const inventory = useAppSelector((s) => s.profile.inventory);
+  const [builtTeam, setBuiltTeam] = useState<BuiltTeam | null>(null);
+  const [teamName, setTeamName] = useState("");
 
   const owned: OwnedCharacter[] = useMemo(() => {
     const charById = new Map(characters.map((c) => [c.id, c]));
@@ -29,6 +43,29 @@ export function EventModal({
   }, [characters, inventory]);
 
   const suggestions = useMemo(() => suggestCharactersForEvent(event, owned), [event, owned]);
+  const charById = useMemo(() => new Map(characters.map((c) => [c.id, c])), [characters]);
+
+  function handleBuildTeam() {
+    const eventTagHints = deriveEventTagHints(event, characters);
+    setBuiltTeam(buildOptimalTeam({ mode: "event", owned, eventTagHints }));
+  }
+
+  function handleSaveTeam() {
+    if (!builtTeam) return;
+    const now = new Date().toISOString();
+    dispatch(
+      saveTeam({
+        id: crypto.randomUUID(),
+        name: teamName.trim() || event.name,
+        mode: builtTeam.mode,
+        slots: builtTeam.slots,
+        supportItemIds: builtTeam.suggestedSupportItems.map((s) => s.id),
+        createdAt: now,
+        updatedAt: now,
+      }),
+    );
+    setTeamName("");
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -52,7 +89,7 @@ export function EventModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95 }}
           onClick={(e) => e.stopPropagation()}
-          className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0d1020] p-5"
+          className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0d1020] p-5"
         >
           <GameImage
             base={`https://dblegends.net/assets/events/${event.img}`}
@@ -76,10 +113,63 @@ export function EventModal({
             </button>
           </div>
 
+          <div className="mb-5 rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <p className="text-sm font-semibold text-white/80">Team für dieses Event</p>
+              {owned.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleBuildTeam}
+                  className="rounded-lg bg-amber-400 px-3 py-1.5 text-xs font-semibold text-black hover:bg-amber-300"
+                >
+                  ⚡ Team automatisch bauen
+                </button>
+              )}
+            </div>
+
+            {owned.length === 0 && (
+              <p className="text-xs text-white/40">Füge zuerst Charaktere zu deinem Inventar hinzu.</p>
+            )}
+
+            {builtTeam && (
+              <div>
+                <p className="mb-2 text-xs text-white/50">
+                  Score <SlidingNumber value={builtTeam.score} className="text-amber-400" />
+                </p>
+                <StaggerReveal className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {builtTeam.slots.map((slot) => {
+                    const character = charById.get(slot.characterId);
+                    if (!character) return null;
+                    return (
+                      <div key={slot.characterId} onClick={() => onOpenCharacter(slot.characterId)} className="cursor-pointer">
+                        <CharacterCard character={character} isLeader={slot.isLeader} />
+                      </div>
+                    );
+                  })}
+                </StaggerReveal>
+                <div className="mt-3 flex items-center gap-2">
+                  <input
+                    className="flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-1.5 text-sm text-white outline-none"
+                    placeholder={event.name}
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSaveTeam}
+                    className="shrink-0 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-white/80 hover:text-white"
+                  >
+                    Team speichern
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
           {suggestions.length > 0 && (
             <div className="mb-5">
               <p className="mb-2 text-xs font-bold uppercase tracking-wide text-amber-300/80">
-                Empfohlen aus deinem Inventar
+                Einzeln empfohlen aus deinem Inventar
               </p>
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {suggestions.map(({ character, matchedHints }) => (
@@ -105,11 +195,6 @@ export function EventModal({
                 ))}
               </div>
             </div>
-          )}
-          {owned.length === 0 && (
-            <p className="mb-5 text-xs text-white/30">
-              Füge Charaktere zu deinem Inventar hinzu, um hier Empfehlungen zu sehen.
-            </p>
           )}
 
           {!event.difficulties || event.difficulties.length === 0 ? (

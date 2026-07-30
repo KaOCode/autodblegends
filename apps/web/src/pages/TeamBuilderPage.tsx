@@ -1,6 +1,13 @@
 import { useMemo, useState, type ReactElement } from "react";
 import { Button } from "@heroui/react";
-import { buildOptimalTeam, type BuiltTeam, type OwnedCharacter, type TeamMode } from "@autodbl/shared";
+import {
+  buildOptimalTeam,
+  deriveEventTagHints,
+  rankLeaderCandidates,
+  type BuiltTeam,
+  type OwnedCharacter,
+  type TeamMode,
+} from "@autodbl/shared";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { deleteTeam, saveTeam } from "../store/profileSlice";
 import { CharacterCard } from "../components/CharacterCard";
@@ -18,10 +25,13 @@ const MODES: { key: TeamMode; label: string }[] = [
 export function TeamBuilderPage() {
   const dispatch = useAppDispatch();
   const characters = useAppSelector((s) => s.gameData.characters);
+  const events = useAppSelector((s) => s.gameData.events);
   const inventory = useAppSelector((s) => s.profile.inventory);
   const savedTeams = useAppSelector((s) => s.profile.teams);
   const [mode, setMode] = useState<TeamMode>("pvp");
-  const [eventTagHint, setEventTagHint] = useState("");
+  const [selectedEventId, setSelectedEventId] = useState<number | "">("");
+  const [leaderMode, setLeaderMode] = useState<"auto" | "manual">("auto");
+  const [selectedLeaderId, setSelectedLeaderId] = useState<number | "">("");
   const [result, setResult] = useState<BuiltTeam | null>(null);
   const [teamName, setTeamName] = useState("");
   const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
@@ -37,8 +47,20 @@ export function TeamBuilderPage() {
       .filter((v): v is OwnedCharacter => v !== null);
   }, [characters, inventory]);
 
+  const relevantEvents = useMemo(
+    () => events.filter((e) => e.status !== "expired").sort((a, b) => a.name.localeCompare(b.name)),
+    [events],
+  );
+
+  const leaderCandidates = useMemo(() => rankLeaderCandidates(owned), [owned]);
+
+  const canAutoCreate = owned.length > 0 && (leaderMode === "auto" || selectedLeaderId !== "");
+
   function handleAutoCreate() {
-    const built = buildOptimalTeam({ mode, owned, eventTagHint: eventTagHint.trim() || undefined });
+    const selectedEvent = mode === "event" && selectedEventId !== "" ? events.find((e) => e.id === selectedEventId) : undefined;
+    const eventTagHints = selectedEvent ? deriveEventTagHints(selectedEvent, characters) : undefined;
+    const fixedLeaderId = leaderMode === "manual" && selectedLeaderId !== "" ? selectedLeaderId : undefined;
+    const built = buildOptimalTeam({ mode, owned, eventTagHints, fixedLeaderId });
     setResult(built);
   }
 
@@ -84,20 +106,79 @@ export function TeamBuilderPage() {
         </div>
 
         {mode === "event" && (
-          <input
-            className="mt-4 w-full max-w-sm rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-amber-400/60"
-            placeholder='Event-Tag Hinweis (z.B. "Universe Rep", "Android")'
-            value={eventTagHint}
-            onChange={(e) => setEventTagHint(e.target.value)}
-          />
+          <div className="mt-4">
+            <p className="mb-1 text-xs text-white/50">Event auswählen (optional, verfeinert die Auswahl)</p>
+            <select
+              className="w-full max-w-sm rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-amber-400/60"
+              value={selectedEventId}
+              onChange={(e) => setSelectedEventId(e.target.value ? Number(e.target.value) : "")}
+            >
+              <option value="">Kein bestimmtes Event</option>
+              {relevantEvents.map((e) => (
+                <option key={e.id} value={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+          </div>
         )}
 
         <div className="mt-4">
-          <Button isDisabled={owned.length === 0} onPress={handleAutoCreate}>
+          <p className="mb-1 text-xs text-white/50">Leader</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex gap-1 rounded-full border border-white/10 bg-black/20 p-1 w-fit">
+              <button
+                type="button"
+                onClick={() => setLeaderMode("auto")}
+                className={`rounded-full px-3 py-1 text-xs transition-colors ${
+                  leaderMode === "auto" ? "bg-amber-400 text-black font-semibold" : "text-white/70 hover:text-white"
+                }`}
+              >
+                Bester Leader (automatisch)
+              </button>
+              <button
+                type="button"
+                onClick={() => setLeaderMode("manual")}
+                className={`rounded-full px-3 py-1 text-xs transition-colors ${
+                  leaderMode === "manual" ? "bg-amber-400 text-black font-semibold" : "text-white/70 hover:text-white"
+                }`}
+              >
+                Leader selbst wählen
+              </button>
+            </div>
+            {leaderMode === "manual" && (
+              <select
+                className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none focus:border-amber-400/60"
+                value={selectedLeaderId}
+                onChange={(e) => setSelectedLeaderId(e.target.value ? Number(e.target.value) : "")}
+              >
+                <option value="">-- Leader wählen --</option>
+                {leaderCandidates.map((c) => (
+                  <option key={c.character.character.id} value={c.character.character.id}>
+                    {c.hasLeaderSkill ? "⭐ " : ""}
+                    {c.character.character.name} ({c.character.character.rarity})
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+          {leaderMode === "manual" && (
+            <p className="mt-1 text-xs text-white/40">
+              ⭐ = hat einen eigenen Leader Skill. Charaktere ohne Leader Skill funktionieren als Leader, bringen dem
+              Team aber keinen zusätzlichen Bonus.
+            </p>
+          )}
+        </div>
+
+        <div className="mt-4">
+          <Button isDisabled={!canAutoCreate} onPress={handleAutoCreate}>
             ⚡ Auto Create
           </Button>
           {owned.length === 0 && (
             <p className="mt-2 text-xs text-white/40">Füge zuerst Charaktere in deinem Inventar hinzu.</p>
+          )}
+          {owned.length > 0 && leaderMode === "manual" && selectedLeaderId === "" && (
+            <p className="mt-2 text-xs text-white/40">Wähle zuerst einen Leader aus der Liste.</p>
           )}
         </div>
       </div>
