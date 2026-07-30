@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactElement } from "react";
 import { Button } from "@heroui/react";
 import { buildOptimalTeam, type BuiltTeam, type OwnedCharacter, type TeamMode } from "@autodbl/shared";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { saveTeam } from "../store/profileSlice";
+import { deleteTeam, saveTeam } from "../store/profileSlice";
 import { CharacterCard } from "../components/CharacterCard";
 import { CharacterHoverCard } from "../components/CharacterHoverCard";
 import { CharacterModal } from "../components/CharacterModal";
@@ -19,6 +19,7 @@ export function TeamBuilderPage() {
   const dispatch = useAppDispatch();
   const characters = useAppSelector((s) => s.gameData.characters);
   const inventory = useAppSelector((s) => s.profile.inventory);
+  const savedTeams = useAppSelector((s) => s.profile.teams);
   const [mode, setMode] = useState<TeamMode>("pvp");
   const [eventTagHint, setEventTagHint] = useState("");
   const [result, setResult] = useState<BuiltTeam | null>(null);
@@ -100,6 +101,57 @@ export function TeamBuilderPage() {
           )}
         </div>
       </div>
+
+      {savedTeams.length > 0 && (
+        <div className="mb-6">
+          <h2 className="mb-3 text-lg font-semibold text-white">Gespeicherte Teams ({savedTeams.length})</h2>
+          <div className="space-y-2">
+            {[...savedTeams]
+              .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+              .map((team) => (
+                <div
+                  key={team.id}
+                  className="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3"
+                >
+                  <div className="min-w-[10rem]">
+                    <p className="text-sm font-semibold text-white">{team.name}</p>
+                    <p className="text-xs text-white/40">
+                      {MODES.find((m) => m.key === team.mode)?.label ?? team.mode} ·{" "}
+                      {new Date(team.createdAt).toLocaleDateString("de-DE")}
+                    </p>
+                  </div>
+                  <div className="flex flex-1 flex-wrap gap-1">
+                    {team.slots.map((slot) => {
+                      const character = charById.get(slot.characterId);
+                      if (!character) return null;
+                      return (
+                        <button
+                          key={slot.characterId}
+                          type="button"
+                          onClick={() => setOpenCharacterId(character.id)}
+                          title={character.name}
+                          className={`relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border ${
+                            slot.isLeader ? "border-amber-400" : "border-white/10"
+                          }`}
+                        >
+                          <img
+                            src={`https://dblegends.net/assets/card_icons/BChaIco_${character.img}.webp`}
+                            alt={character.name}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <Button size="sm" variant="danger-soft" onPress={() => dispatch(deleteTeam(team.id))}>
+                    Löschen
+                  </Button>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
 
       {result && (
         <div>

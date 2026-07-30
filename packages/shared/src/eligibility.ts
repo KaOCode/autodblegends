@@ -103,3 +103,36 @@ export function suggestCharactersForEvent(
 
   return ranked.slice(0, SUGGESTION_LIMIT).map((r) => ({ character: r.entry, matchedHints: r.matchedHints }));
 }
+
+export interface ZenkaiReadyCharacter {
+  character: OwnedCharacter;
+  /** the currently live "ZENKAI AWAKENING" banner for this character, if any */
+  banner: Banner | null;
+}
+
+/**
+ * Owned characters that have a Zenkai Awakening available
+ * (`character.isZenkai`, derived at scrape time from the card's own Zenkai
+ * section) but that the user hasn't marked as already awakened
+ * (`inventory.isZAwakened`). Cross-referenced against the "Zenkai"-type
+ * banners dblegends.net lists on its summons page, so ones with a live
+ * banner (i.e. actually actionable right now) sort first.
+ */
+export function findZenkaiReadyCharacters(
+  owned: OwnedCharacter[],
+  banners: Banner[],
+): ZenkaiReadyCharacter[] {
+  const now = Date.now();
+  const zenkaiBanners = banners.filter((b) => b.type === "Zenkai" && new Date(b.endsAt).getTime() > now);
+
+  return owned
+    .filter((o) => o.character.isZenkai && !o.inventory.isZAwakened)
+    .map((character) => ({
+      character,
+      banner:
+        zenkaiBanners.find((b) =>
+          b.guessedFeaturedCharacterNames.some((n) => n.toLowerCase() === character.character.name.toLowerCase()),
+        ) ?? null,
+    }))
+    .sort((a, b) => Number(Boolean(b.banner)) - Number(Boolean(a.banner)));
+}

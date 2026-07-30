@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { Chip } from "@heroui/react";
-import { matchEventToOwnedCharacters, rankBannerPriority, type OwnedCharacter } from "@autodbl/shared";
+import {
+  findZenkaiReadyCharacters,
+  matchEventToOwnedCharacters,
+  rankBannerPriority,
+  type OwnedCharacter,
+} from "@autodbl/shared";
 import { useAppSelector } from "../store/hooks";
 import { EventModal } from "../components/EventModal";
 import { CharacterModal } from "../components/CharacterModal";
@@ -35,6 +40,8 @@ export function EventsPage() {
 
   const activeEvents = useMemo(() => events.filter((e) => e.status === "active"), [events]);
 
+  const zenkaiReady = useMemo(() => findZenkaiReadyCharacters(owned, banners), [owned, banners]);
+
   const bannerRanking = useMemo(() => {
     const upcoming = banners.filter((b) => new Date(b.endsAt).getTime() > Date.now());
     return upcoming
@@ -58,6 +65,43 @@ export function EventsPage() {
 
   return (
     <div className="space-y-10">
+      {zenkaiReady.length > 0 && (
+        <section>
+          <h2 className="mb-1 text-lg font-semibold text-white">Zenkai-bereit ({zenkaiReady.length})</h2>
+          <p className="mb-3 text-xs text-white/40">
+            Charaktere aus deinem Inventar, die zenkai-awakened werden können und (noch) nicht als awakened markiert
+            sind. Grün = das passende Zenkai-Banner ist gerade verfügbar.
+          </p>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {zenkaiReady.map(({ character, banner }) => (
+              <button
+                key={character.character.id}
+                type="button"
+                onClick={() => (banner ? setOpenBannerId(banner.id) : setOpenCharacterId(character.character.id))}
+                className={`flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${
+                  banner
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300"
+                    : "border-white/10 bg-white/5 text-white/60"
+                }`}
+              >
+                <img
+                  src={`https://dblegends.net/assets/card_icons/BChaIco_${character.character.img}.webp`}
+                  alt={character.character.name}
+                  className="h-10 w-10 shrink-0 rounded-md object-cover"
+                  loading="lazy"
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-medium text-white">{character.character.name}</p>
+                  <p className="truncate text-xs opacity-70">
+                    {banner ? "Zenkai-Banner verfügbar – Klick für Details" : "Kein aktives Zenkai-Banner erkannt"}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section>
         <h2 className="mb-3 text-lg font-semibold text-white">Aktive Events ({activeEvents.length})</h2>
         <p className="mb-3 text-xs text-white/30">Klick auf ein Event für Stages, Gegner &amp; Belohnungen.</p>

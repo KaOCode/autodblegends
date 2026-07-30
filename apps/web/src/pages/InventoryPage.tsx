@@ -189,9 +189,19 @@ export function InventoryPage() {
                 character={c}
                 right={
                   entry ? (
-                    <span className="shrink-0 rounded-full bg-amber-400/20 px-2 py-1 text-xs font-semibold text-amber-300">
-                      ★ {entry.stars}
-                    </span>
+                    <div className="flex shrink-0 flex-col items-end gap-1">
+                      <span className="rounded-full bg-amber-400/20 px-2 py-1 text-xs font-semibold text-amber-300">
+                        ★ {entry.stars}
+                      </span>
+                      {c.isZenkai && !entry.isZAwakened && (
+                        <span
+                          title="Kann zenkai-awakened werden"
+                          className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300"
+                        >
+                          ⚡ Zenkai
+                        </span>
+                      )}
+                    </div>
                   ) : (
                     <span className="shrink-0 rounded-full border border-dashed border-white/20 px-2 py-1 text-xs text-white/30">
                       + hinzufügen

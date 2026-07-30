@@ -111,13 +111,19 @@ export function CharacterModal({ character, onClose }: { character: Character; o
               </div>
             </div>
 
+            {character.isZenkai && !isZAwakened && (
+              <p className="mt-4 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-300">
+                ⚡ Kann zenkai-awakened werden – prüfe im "Events &amp; Banner"-Tab, ob das Zenkai-Banner gerade
+                verfügbar ist.
+              </p>
+            )}
             <label className="mt-4 flex items-center gap-2 text-sm text-white/70">
               <input
                 type="checkbox"
                 checked={isZAwakened}
                 onChange={(e) => persist({ isZAwakened: e.target.checked })}
               />
-              Z-Awakened
+              Bereits Z-Awakened
             </label>
 
             <div className="mt-4 flex gap-2">
