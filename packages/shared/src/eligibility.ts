@@ -1,4 +1,4 @@
-import type { Banner, Character, DblEvent } from "./types.js";
+import type { Banner, Character, DblEvent, Team } from "./types.js";
 import { characterPowerScore, type OwnedCharacter } from "./optimizer.js";
 
 /**
@@ -108,6 +108,9 @@ export interface ZenkaiReadyCharacter {
   character: OwnedCharacter;
   /** the currently live "ZENKAI AWAKENING" banner for this character, if any */
   banner: Banner | null;
+  /** relative priority score - higher means "awaken this one first" */
+  score: number;
+  reasons: string[];
 }
 
 const ZENKAI_MIN_STARS = 7;
@@ -117,26 +120,55 @@ const ZENKAI_MIN_STARS = 7;
  * (`character.isZenkai`, derived at scrape time from the card's own Zenkai
  * section), are already rank 7+ (all gold stars - Zenkai Awakening only
  * unlocks once the card is fully ranked up), and that the user hasn't
- * marked as already awakened (`inventory.isZAwakened`). Cross-referenced
- * against the "Zenkai"-type banners dblegends.net lists on its summons
- * page, so ones with a live banner (i.e. actually actionable right now)
- * sort first.
+ * marked as already awakened (`inventory.isZAwakened`).
+ *
+ * DBL's exchange shop ("Tauschbörse") periodically offers Zenkai Awakening
+ * items you spend on whichever eligible owned character you pick - there's
+ * no public data source for what's currently in a given player's shop, so
+ * instead of guessing shop contents this ranks *which of your own eligible
+ * characters is the better pick* whenever one becomes available: stronger
+ * cards (rarity/stats), characters with their own leader skill, characters
+ * already used in one of your saved teams, and ones with a live Zenkai
+ * banner right now (a signal the card is currently "in the spotlight")
+ * all push a character higher.
  */
 export function findZenkaiReadyCharacters(
   owned: OwnedCharacter[],
   banners: Banner[],
+  teams: Team[] = [],
 ): ZenkaiReadyCharacter[] {
   const now = Date.now();
   const zenkaiBanners = banners.filter((b) => b.type === "Zenkai" && new Date(b.endsAt).getTime() > now);
+  const usedInTeamIds = new Set(teams.flatMap((t) => t.slots.map((s) => s.characterId)));
 
   return owned
     .filter((o) => o.character.isZenkai && !o.inventory.isZAwakened && o.inventory.stars >= ZENKAI_MIN_STARS)
-    .map((character) => ({
-      character,
-      banner:
+    .map((character) => {
+      const banner =
         zenkaiBanners.find((b) =>
           b.guessedFeaturedCharacterNames.some((n) => n.toLowerCase() === character.character.name.toLowerCase()),
-        ) ?? null,
-    }))
-    .sort((a, b) => Number(Boolean(b.banner)) - Number(Boolean(a.banner)));
+        ) ?? null;
+
+      let score = characterPowerScore(character);
+      const reasons: string[] = [];
+
+      if (usedInTeamIds.has(character.character.id)) {
+        score += 12;
+        reasons.push("Wird in einem gespeicherten Team eingesetzt");
+      }
+      if (character.character.leaderSkill) {
+        score += 6;
+        reasons.push("Hat eigenen Leader Skill");
+      }
+      if (banner) {
+        score += 8;
+        reasons.push("Zenkai-Banner aktuell verfügbar");
+      }
+      if (character.character.rarity === "LEGEND") {
+        reasons.push("LEGEND-Seltenheit");
+      }
+
+      return { character, banner, score: Math.round(score * 100) / 100, reasons };
+    })
+    .sort((a, b) => b.score - a.score);
 }

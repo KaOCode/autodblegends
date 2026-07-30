@@ -23,6 +23,7 @@ export function EventsPage() {
   const events = useAppSelector((s) => s.gameData.events);
   const banners = useAppSelector((s) => s.gameData.banners);
   const inventory = useAppSelector((s) => s.profile.inventory);
+  const teams = useAppSelector((s) => s.profile.teams);
   const [openEventId, setOpenEventId] = useState<number | null>(null);
   const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
   const [openBannerId, setOpenBannerId] = useState<number | null>(null);
@@ -40,7 +41,7 @@ export function EventsPage() {
 
   const activeEvents = useMemo(() => events.filter((e) => e.status === "active"), [events]);
 
-  const zenkaiReady = useMemo(() => findZenkaiReadyCharacters(owned, banners), [owned, banners]);
+  const zenkaiReady = useMemo(() => findZenkaiReadyCharacters(owned, banners, teams), [owned, banners, teams]);
 
   const bannerRanking = useMemo(() => {
     const upcoming = banners.filter((b) => new Date(b.endsAt).getTime() > Date.now());
@@ -67,23 +68,25 @@ export function EventsPage() {
     <div className="space-y-10">
       {zenkaiReady.length > 0 && (
         <section>
-          <h2 className="mb-1 text-lg font-semibold text-white">Zenkai-bereit ({zenkaiReady.length})</h2>
+          <h2 className="mb-1 text-lg font-semibold text-white">Zenkai-Priorität ({zenkaiReady.length})</h2>
           <p className="mb-3 text-xs text-white/40">
-            Charaktere aus deinem Inventar, die zenkai-awakened werden können und (noch) nicht als awakened markiert
-            sind. Grün = das passende Zenkai-Banner ist gerade verfügbar.
+            Wenn in der Tauschbörse mal wieder ein Zenkai-Awakening-Item verfügbar ist: hier ist die Reihenfolge, in
+            der es sich für deine Charaktere am meisten lohnt (Stärke, eigener Leader Skill, Nutzung in gespeicherten
+            Teams, gerade laufendes Zenkai-Banner). Grün = das passende Banner ist zusätzlich gerade live.
           </p>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {zenkaiReady.map(({ character, banner }) => (
+          <div className="space-y-2">
+            {zenkaiReady.map(({ character, banner, reasons }, i) => (
               <button
                 key={character.character.id}
                 type="button"
                 onClick={() => (banner ? setOpenBannerId(banner.id) : setOpenCharacterId(character.character.id))}
-                className={`flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${
+                className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left text-sm transition-opacity hover:opacity-80 ${
                   banner
                     ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300"
                     : "border-white/10 bg-white/5 text-white/60"
                 }`}
               >
+                <span className="w-6 shrink-0 text-center text-xs font-bold text-white/30">#{i + 1}</span>
                 <img
                   src={`https://dblegends.net/assets/card_icons/BChaIco_${character.character.img}.webp`}
                   alt={character.character.name}
@@ -93,7 +96,7 @@ export function EventsPage() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium text-white">{character.character.name}</p>
                   <p className="truncate text-xs opacity-70">
-                    {banner ? "Zenkai-Banner verfügbar – Klick für Details" : "Kein aktives Zenkai-Banner erkannt"}
+                    {reasons.length > 0 ? reasons.join(" · ") : "Solide Basis-Empfehlung"}
                   </p>
                 </div>
               </button>
