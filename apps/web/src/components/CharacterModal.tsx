@@ -14,14 +14,12 @@ export function CharacterModal({ character, onClose }: { character: Character; o
   const owned = Boolean(entry);
 
   const [stars, setStars] = useState(entry?.stars ?? 0);
-  const [level, setLevel] = useState(entry?.level ?? 1);
-  const [copies, setCopies] = useState(entry?.copies ?? 1);
+  const [level, setLevel] = useState(entry?.level ?? 5000);
   const [isZAwakened, setIsZAwakened] = useState(entry?.isZAwakened ?? false);
 
   useEffect(() => {
     setStars(entry?.stars ?? 0);
-    setLevel(entry?.level ?? 1);
-    setCopies(entry?.copies ?? 1);
+    setLevel(entry?.level ?? 5000);
     setIsZAwakened(entry?.isZAwakened ?? false);
   }, [entry, character.id]);
 
@@ -33,11 +31,10 @@ export function CharacterModal({ character, onClose }: { character: Character; o
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  function persist(next: Partial<{ stars: number; level: number; copies: number; isZAwakened: boolean }>) {
-    const merged = { stars, level, copies, isZAwakened, ...next };
+  function persist(next: Partial<{ stars: number; level: number; isZAwakened: boolean }>) {
+    const merged = { stars, level, isZAwakened, ...next };
     setStars(merged.stars);
     setLevel(merged.level);
-    setCopies(merged.copies);
     setIsZAwakened(merged.isZAwakened);
     if (merged.stars > 0) {
       dispatch(upsertInventoryEntry({ characterId: character.id, ...merged }));
@@ -96,7 +93,7 @@ export function CharacterModal({ character, onClose }: { character: Character; o
               </span>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <p className="mb-1 text-xs text-white/50">Sterne</p>
                 <StarPicker value={stars} onChange={(v) => persist({ stars: v })} />
@@ -104,10 +101,6 @@ export function CharacterModal({ character, onClose }: { character: Character; o
               <div>
                 <p className="mb-1 text-xs text-white/50">Level</p>
                 <NumberStepper value={level} min={1} max={9999} step={1} onChange={(v) => persist({ level: v })} />
-              </div>
-              <div>
-                <p className="mb-1 text-xs text-white/50">Kopien</p>
-                <NumberStepper value={copies} min={0} max={99} onChange={(v) => persist({ copies: v })} />
               </div>
             </div>
 

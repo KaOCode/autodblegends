@@ -23,7 +23,6 @@ interface CloudInventoryRow {
   stars: number;
   level: number;
   is_z_awakened: boolean;
-  copies: number;
   updated_at: string;
 }
 
@@ -43,7 +42,6 @@ function fromCloudInventory(row: CloudInventoryRow): InventoryEntry {
     stars: row.stars,
     level: row.level,
     isZAwakened: row.is_z_awakened,
-    copies: row.copies,
     updatedAt: row.updated_at,
   };
 }
@@ -103,7 +101,6 @@ export const syncWithCloud = createAsyncThunk<
         stars: e.stars,
         level: e.level,
         is_z_awakened: e.isZAwakened,
-        copies: e.copies,
         updated_at: e.updatedAt,
       })),
     ),
@@ -134,7 +131,6 @@ function pushInventoryEntry(userId: string | undefined, entry: InventoryEntry) {
     stars: entry.stars,
     level: entry.level,
     is_z_awakened: entry.isZAwakened,
-    copies: entry.copies,
     updated_at: entry.updatedAt,
   });
 }
@@ -196,7 +192,7 @@ const profileSlice = createSlice({
     upsertInventoryEntryLocal(state, action: PayloadAction<InventoryEntry>) {
       const entry = action.payload;
       state.inventory = state.inventory.filter((e) => e.characterId !== entry.characterId);
-      if (entry.stars > 0 || entry.copies > 0) state.inventory.push(entry);
+      if (entry.stars > 0) state.inventory.push(entry);
     },
     removeInventoryEntryLocal(state, action: PayloadAction<number>) {
       state.inventory = state.inventory.filter((e) => e.characterId !== action.payload);

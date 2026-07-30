@@ -108,7 +108,6 @@ export interface InventoryEntry {
   stars: number;
   level: number;
   isZAwakened: boolean;
-  copies: number;
   updatedAt: string;
 }
 

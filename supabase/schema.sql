@@ -79,9 +79,8 @@ create table if not exists public.user_inventory (
   user_id uuid not null references auth.users (id) on delete cascade,
   character_id integer not null,
   stars smallint not null check (stars between 0 and 7),
-  level integer not null default 1,
+  level integer not null default 5000,
   is_z_awakened boolean not null default false,
-  copies integer not null default 1,
   updated_at timestamptz not null default now(),
   primary key (user_id, character_id)
 );
