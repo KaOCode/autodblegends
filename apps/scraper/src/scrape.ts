@@ -3,8 +3,16 @@ import { setDefaultResultOrder } from "node:dns";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { Character, CharacterDb } from "@autodbl/shared";
-import { fetchBanners, fetchCharacter, fetchCharacterIndex, fetchEvents, fetchTagMap, sleep } from "./dblegends.js";
+import type { Character, CharacterDb, DblEvent } from "@autodbl/shared";
+import {
+  fetchBanners,
+  fetchCharacter,
+  fetchCharacterIndex,
+  fetchEventDetail,
+  fetchEvents,
+  fetchTagMap,
+  sleep,
+} from "./dblegends.js";
 import { pushToSupabase } from "./supabase.js";
 
 // Node's fetch (undici) resolves DNS itself and, on some Windows/ISP setups,
@@ -52,6 +60,32 @@ async function scrapeCharacters(): Promise<Character[]> {
   return results;
 }
 
+/** Stage/reward detail lives on separate /event/{id} pages. Fetching all
+ * ~1200+ historical events on every run would be wasteful and slow, so only
+ * active/upcoming events (the ones actually relevant to "what can I clear
+ * right now") get enriched. */
+async function enrichEventDetails(events: DblEvent[]): Promise<DblEvent[]> {
+  const relevant = events.filter((e) => e.status !== "expired");
+  console.log(`Fetching stage details for ${relevant.length} active/upcoming events...`);
+  const detailById = new Map<number, DblEvent["difficulties"]>();
+
+  for (let i = 0; i < relevant.length; i += CONCURRENCY) {
+    const batch = relevant.slice(i, i + CONCURRENCY);
+    await Promise.all(
+      batch.map(async (event) => {
+        try {
+          detailById.set(event.id, await fetchEventDetail(event.id));
+        } catch (err) {
+          console.warn(`  skip event detail #${event.id} (${event.name}): ${(err as Error).message}`);
+        }
+      }),
+    );
+    if (i + CONCURRENCY < relevant.length) await sleep(DELAY_BETWEEN_BATCHES_MS);
+  }
+
+  return events.map((e) => (detailById.has(e.id) ? { ...e, difficulties: detailById.get(e.id) } : e));
+}
+
 async function main() {
   await mkdir(DATA_DIR, { recursive: true });
 
@@ -61,7 +95,8 @@ async function main() {
   console.log(`Wrote ${characters.length} characters -> data/characters.json`);
 
   console.log("Fetching events...");
-  const events = await fetchEvents();
+  const eventsRaw = await fetchEvents();
+  const events = await enrichEventDetails(eventsRaw);
   await writeFile(resolve(DATA_DIR, "events.json"), JSON.stringify({ events, fetchedAt: new Date().toISOString() }, null, 2));
   console.log(`Wrote ${events.length} events -> data/events.json`);
 

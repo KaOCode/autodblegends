@@ -9,7 +9,17 @@ const CARD_WIDTH = 420;
 const CARD_MAX_HEIGHT = 420;
 const MARGIN = 12;
 
-export function CharacterHoverCard({ character, children }: { character: Character; children: ReactNode }) {
+export function CharacterHoverCard({
+  character,
+  children,
+  onClick,
+}: {
+  character: Character;
+  children: ReactNode;
+  /** Click opens the full detail/inventory modal - kept separate from the
+   * 4s hover preview, which stays a quick read-only glance. */
+  onClick?: (character: Character) => void;
+}) {
   const { isOpen, triggerProps } = useLongHover(4000);
   const anchorRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null);
@@ -30,7 +40,12 @@ export function CharacterHoverCard({ character, children }: { character: Charact
   }, [isOpen]);
 
   return (
-    <div ref={anchorRef} {...triggerProps}>
+    <div
+      ref={anchorRef}
+      {...triggerProps}
+      onClick={onClick ? () => onClick(character) : undefined}
+      className={onClick ? "cursor-pointer" : undefined}
+    >
       {children}
       {createPortal(
         <AnimatePresence>

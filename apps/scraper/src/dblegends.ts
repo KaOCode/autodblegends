@@ -1,4 +1,14 @@
-import type { AbilityText, Banner, Character, DblEvent } from "@autodbl/shared";
+import * as cheerio from "cheerio";
+import type {
+  AbilityText,
+  Banner,
+  Character,
+  DblEvent,
+  EventChallenge,
+  EventDifficulty,
+  EventDrop,
+  EventStage,
+} from "@autodbl/shared";
 import { extractJsonScript, extractSelectOptions, extractWindowGlobal } from "./htmlJson.js";
 
 const BASE = "https://dblegends.net";
@@ -152,6 +162,89 @@ export async function fetchEvents(): Promise<DblEvent[]> {
     isPermanent: Boolean(e.perm),
     status: e.perm || (e.begin <= now && e.end >= now) ? "active" : e.begin > now ? "upcoming" : "expired",
   }));
+}
+
+/** /event/{id} is plain server-rendered HTML (no embedded JSON), one
+ * <details class="ev-stage"> per stage, grouped under <div class="ev-diff">
+ * blocks for events with several difficulty tiers. */
+export async function fetchEventDetail(id: number): Promise<EventDifficulty[]> {
+  const html = await fetchHtml(`/event/${id}`);
+  const $ = cheerio.load(html);
+  const difficulties: EventDifficulty[] = [];
+
+  $(".ev-diff").each((diffIndex, diffEl) => {
+    const stages: EventStage[] = [];
+
+    $(diffEl)
+      .find(".ev-stage")
+      .each((_, stageEl) => {
+        const $stage = $(stageEl);
+        const name = $stage.find(".ev-stage__name").first().text().trim();
+        const staminaText = $stage.find(".ev-stamina b").first().text().trim();
+        const stamina = staminaText ? Number(staminaText) : null;
+
+        const enemies = $stage
+          .find(".ev-enemy")
+          .map((_, enemyEl) => {
+            const $enemy = $(enemyEl);
+            const href = $enemy.find("a[href^='character/']").attr("href") ?? "";
+            const idMatch = href.match(/character\/(\d+)/);
+            const enemyName = $enemy.find(".card-header.name").first().text().trim();
+            const levelText = $enemy.find(".ev-lvl").first().text().replace(/[^\d]/g, "");
+            return {
+              characterId: idMatch ? Number(idMatch[1]) : null,
+              name: enemyName,
+              level: levelText ? Number(levelText) : null,
+            };
+          })
+          .get();
+
+        const rewardsText = $stage.find(".ev-rewards").first().text();
+        const expMatch = rewardsText.match(/EXP\s*([\d,]+)/);
+        const zeniMatch = rewardsText.match(/Zeni\s*([\d,]+)/);
+
+        const firstClearDrops = parseDrops($, $stage.find(".ev-drops").first());
+
+        const challenges: EventChallenge[] = $stage
+          .find(".ev-chal")
+          .map((_, chalEl) => {
+            const $chal = $(chalEl);
+            const text = $chal.find(".ev-chal__txt").first().text().trim();
+            const drops = parseDrops($, $chal);
+            return { text, reward: drops[0] ?? null };
+          })
+          .get();
+
+        stages.push({
+          name,
+          stamina,
+          enemies,
+          exp: expMatch?.[1] ?? null,
+          zeni: zeniMatch?.[1] ?? null,
+          firstClearDrops,
+          challenges,
+        });
+      });
+
+    if (stages.length > 0) difficulties.push({ index: diffIndex, stages });
+  });
+
+  return difficulties;
+}
+
+function parseDrops(
+  $: cheerio.CheerioAPI,
+  $scope: cheerio.Cheerio<import("domhandler").Element>,
+): EventDrop[] {
+  return $scope
+    .find(".ev-drop")
+    .map((_, dropEl) => {
+      const $drop = $(dropEl);
+      const name = $drop.attr("title") ?? $drop.find("img").attr("alt") ?? "";
+      const qty = $drop.find(".dn").first().text().trim();
+      return { name, qty: qty || "1" };
+    })
+    .get();
 }
 
 interface RawGacha {

@@ -86,7 +86,10 @@
       "endsAt": "2026-08-02T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Saiyan God SS Vegito"
+      ]
     },
     {
       "id": 2023300,
@@ -108,7 +111,9 @@
       "endsAt": "2026-08-01T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Zamasu"
+      ]
     },
     {
       "id": 100640,
@@ -119,7 +124,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Majin Buu (Good): Hercule (Assist)"
+      ]
     },
     {
       "id": 2030800,
@@ -174,7 +181,9 @@
       "endsAt": "2026-07-15T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito"
+      ]
     },
     {
       "id": 2042000,
@@ -196,7 +205,12 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gohan (Youth)",
+        "Super Saiyan Gohan",
+        "Gohan",
+        "Super Saiyan Gohan (Youth)"
+      ]
     },
     {
       "id": 2039700,
@@ -284,7 +298,10 @@
       "endsAt": "2026-06-27T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Vegito"
+      ]
     },
     {
       "id": 2026800,
@@ -340,7 +357,9 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Bardock",
+        "Goku & Bardock"
       ]
     },
     {
@@ -375,7 +394,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan Vegeta"
       ]
     },
     {
@@ -546,7 +566,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan God Goku"
       ]
     },
     {
@@ -657,7 +678,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Turles"
+      ]
     },
     {
       "id": 28200,
@@ -712,7 +735,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Perfect Form Cell"
+      ]
     },
     {
       "id": 28100,
@@ -734,7 +759,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bardock"
+      ]
     },
     {
       "id": 22200,
@@ -768,7 +795,9 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Trunks",
+        "Super Saiyan 2 & Super Saiyan God SS Trunks (Adult) & Vegeta"
       ]
     },
     {
@@ -835,7 +864,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Buu: Super"
+      ]
     },
     {
       "id": 100313,
@@ -846,7 +877,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Gotenks",
+        "Gotenks"
+      ]
     },
     {
       "id": 2040100,
@@ -879,7 +913,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Tamagami Number Three"
+      ]
     },
     {
       "id": 2019100,
@@ -936,7 +972,9 @@
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
         "Goku",
-        "Super Saiyan Goku"
+        "Super Saiyan Goku",
+        "Goku (Mini)",
+        "Super Saiyan Goku (Mini)"
       ]
     },
     {
@@ -1003,7 +1041,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Baby 2"
+      ]
     },
     {
       "id": 100597,
@@ -1015,7 +1055,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Vegeta"
       ]
     },
     {
@@ -1245,7 +1286,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Boujack"
+      ]
     },
     {
       "id": 1600800,
@@ -1289,7 +1332,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Saiyan God SS Vegito"
+      ]
     },
     {
       "id": 26800,
@@ -1333,7 +1379,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Gohan",
+        "Gohan"
+      ]
     },
     {
       "id": 2037500,
@@ -1378,7 +1427,10 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku Black",
+        "Zamasu",
+        "Zamasu: Goku Black (Assist)"
       ]
     },
     {
@@ -1456,7 +1508,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Nuova Shenron"
+      ]
     },
     {
       "id": 1004700,
@@ -1546,7 +1600,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler",
+        "Final Form Cooler"
+      ]
     },
     {
       "id": 26500,
@@ -1601,7 +1658,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Final Form Frieza"
+      ]
     },
     {
       "id": 26200,
@@ -1678,7 +1737,10 @@
       "endsAt": "2025-08-02T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Vegito"
+      ]
     },
     {
       "id": 22300,
@@ -1744,7 +1806,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Final Form Frieza"
+      ]
     },
     {
       "id": 23200,
@@ -1844,7 +1908,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan God SS Goku"
       ]
     },
     {
@@ -1979,7 +2044,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #18"
+      ]
     },
     {
       "id": 1600600,
@@ -2126,7 +2193,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Launch"
+      ]
     },
     {
       "id": 2033800,
@@ -2160,7 +2229,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Yamcha"
+        "Yamcha",
+        "Wasteland Bandit Yamcha"
       ]
     },
     {
@@ -2195,7 +2265,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku (Mini)"
       ]
     },
     {
@@ -2273,7 +2344,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "1st Form Cell"
+      ]
     },
     {
       "id": 2032600,
@@ -2328,7 +2401,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Perfect Cell"
+      ]
     },
     {
       "id": 2032300,
@@ -2405,7 +2480,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta",
+        "Super Saiyan God SS Gogeta"
+      ]
     },
     {
       "id": 100448,
@@ -2418,7 +2496,10 @@
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
         "Goku",
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Goku",
+        "Super Saiyan God SS Goku & Vegeta",
+        "Goku & Vegeta"
       ]
     },
     {
@@ -2519,7 +2600,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Vegeta"
       ]
     },
     {
@@ -2542,7 +2624,12 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Trunks (Teen)",
+        "Trunks (Teen)",
+        "Trunks",
+        "Super Saiyan Trunks"
+      ]
     },
     {
       "id": 2031000,
@@ -2652,7 +2739,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Zamasu"
+      ]
     },
     {
       "id": 1004300,
@@ -2707,7 +2796,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "King of the Demon Realm Dabura"
+      ]
     },
     {
       "id": 24500,
@@ -2775,7 +2866,10 @@
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
         "Goku",
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan 2 Goku",
+        "Super Saiyan 3 & Super Saiyan 2 Goku & Vegeta",
+        "Goku & Vegeta"
       ]
     },
     {
@@ -2831,7 +2925,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bardock"
+      ]
     },
     {
       "id": 2030000,
@@ -2864,7 +2960,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Hero Tapion"
+      ]
     },
     {
       "id": 24200,
@@ -2898,7 +2996,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -2943,7 +3042,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Broly",
+        "Broly"
+      ]
     },
     {
       "id": 23800,
@@ -3031,7 +3133,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Syn Shenron"
+      ]
     },
     {
       "id": 100424,
@@ -3043,7 +3147,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -3055,7 +3160,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Buu: Kid"
+      ]
     },
     {
       "id": 1004100,
@@ -3143,7 +3250,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Zamasu",
+        "Fusion Zamasu",
+        "Half-Corrupted Fusion Zamasu"
+      ]
     },
     {
       "id": 100370,
@@ -3154,7 +3265,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Broly",
+        "Super Saiyan Broly: Full Power",
+        "Broly"
+      ]
     },
     {
       "id": 23700,
@@ -3333,7 +3448,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -3391,7 +3507,9 @@
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
         "Gohan (Kid)",
-        "Piccolo"
+        "Piccolo",
+        "Gohan",
+        "Gohan (Kid): Piccolo (Assist)"
       ]
     },
     {
@@ -3438,7 +3556,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler"
+      ]
     },
     {
       "id": 2026900,
@@ -3471,7 +3591,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Golden Frieza"
+      ]
     },
     {
       "id": 2026700,
@@ -3493,7 +3615,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Perfect Form Cell"
+      ]
     },
     {
       "id": 1003900,
@@ -3570,7 +3694,12 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Trunks (Teen)",
+        "Trunks (Teen)",
+        "Trunks",
+        "Super Saiyan Trunks"
+      ]
     },
     {
       "id": 2026100,
@@ -3614,7 +3743,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Omega Shenron"
+      ]
     },
     {
       "id": 2025900,
@@ -3647,7 +3778,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta",
+        "Super Saiyan 4 Gogeta"
+      ]
     },
     {
       "id": 22900,
@@ -3691,7 +3825,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bardock"
+      ]
     },
     {
       "id": 2025700,
@@ -3726,7 +3862,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Toppo",
+        "God of Destruction Toppo"
+      ]
     },
     {
       "id": 22800,
@@ -3836,7 +3975,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Jiren",
+        "Jiren: Full Power"
+      ]
     },
     {
       "id": 1600400,
@@ -3935,7 +4077,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Janemba"
+      ]
     },
     {
       "id": 100288,
@@ -3946,7 +4090,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Gogeta",
+        "Gogeta"
+      ]
     },
     {
       "id": 100174,
@@ -3957,7 +4104,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Chi-Chi"
+      ]
     },
     {
       "id": 1003500,
@@ -4001,7 +4150,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bulma (Youth)"
+      ]
     },
     {
       "id": 2024300,
@@ -4095,7 +4246,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Final Form Frieza",
+        "Final Form Frieza: Full Power"
+      ]
     },
     {
       "id": 100459,
@@ -4107,7 +4261,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Kaioken Goku"
       ]
     },
     {
@@ -4185,7 +4340,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Perfect Cell"
+      ]
     },
     {
       "id": 100451,
@@ -4196,7 +4353,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Trunks",
+        "Super Saiyan Trunks (Adult)",
+        "Super Saiyan Trunks"
+      ]
     },
     {
       "id": 100062,
@@ -4207,7 +4368,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #17"
+      ]
     },
     {
       "id": 21800,
@@ -4296,7 +4459,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Ultra Instinct -Sign- Goku"
       ]
     },
     {
@@ -4429,7 +4593,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gotenks",
+        "Super Saiyan 3 Gotenks"
+      ]
     },
     {
       "id": 1300140,
@@ -4495,7 +4662,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gotenks",
+        "Buu: Super",
+        "Gotenks Absorbed Buu: Super"
+      ]
     },
     {
       "id": 2021600,
@@ -4531,7 +4702,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 2 Goku"
       ]
     },
     {
@@ -4566,7 +4738,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Majin Vegeta"
       ]
     },
     {
@@ -4578,7 +4751,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Mai",
+        "Trunks",
+        "Trunks: Mai (Assist)"
+      ]
     },
     {
       "id": 2021300,
@@ -4612,7 +4789,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Evolved Vegeta"
       ]
     },
     {
@@ -4635,7 +4813,12 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Trunks (Teen)",
+        "Trunks (Teen)",
+        "Trunks",
+        "Super Saiyan Trunks"
+      ]
     },
     {
       "id": 100095,
@@ -4646,7 +4829,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #16"
+      ]
     },
     {
       "id": 100079,
@@ -4658,7 +4843,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Piccolo"
+        "Piccolo",
+        "Demon King Piccolo"
       ]
     },
     {
@@ -4670,7 +4856,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Perfect Form Cell"
+      ]
     },
     {
       "id": 100191,
@@ -4681,7 +4869,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Gohan (Youth)",
+        "Gohan (Youth)",
+        "Gohan"
+      ]
     },
     {
       "id": 100151,
@@ -4692,7 +4884,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bardock",
+        "Super Saiyan Bardock"
+      ]
     },
     {
       "id": 110126,
@@ -4704,7 +4899,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku Black"
       ]
     },
     {
@@ -4729,7 +4925,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Majin Buu: Good"
+      ]
     },
     {
       "id": 110111,
@@ -4740,7 +4938,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Gohan (Youth)",
+        "Gohan (Youth)",
+        "Gohan"
+      ]
     },
     {
       "id": 110166,
@@ -4751,7 +4953,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "God of Destruction Beerus"
+      ]
     },
     {
       "id": 100148,
@@ -4762,7 +4966,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Gogeta",
+        "Gogeta"
+      ]
     },
     {
       "id": 100253,
@@ -4786,7 +4993,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Trunks",
+        "Super Saiyan 2 Trunks (Adult)"
+      ]
     },
     {
       "id": 100032,
@@ -4797,7 +5007,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Final Form Frieza"
+      ]
     },
     {
       "id": 100208,
@@ -4808,7 +5020,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler",
+        "Metal Cooler"
+      ]
     },
     {
       "id": 100251,
@@ -4820,7 +5035,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -4832,7 +5048,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super #17"
+      ]
     },
     {
       "id": 100271,
@@ -4844,7 +5062,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan 4 Vegeta"
       ]
     },
     {
@@ -4857,7 +5076,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 4 Goku"
       ]
     },
     {
@@ -4869,7 +5089,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta"
+      ]
     },
     {
       "id": 100240,
@@ -4893,7 +5115,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Turles"
+      ]
     },
     {
       "id": 100094,
@@ -4905,7 +5129,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Piccolo"
+        "Piccolo",
+        "Fused with Kami Piccolo"
       ]
     },
     {
@@ -4917,7 +5142,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Goten (Kid)",
+        "Super Saiyan Goten (Kid)"
+      ]
     },
     {
       "id": 100205,
@@ -4928,7 +5156,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Gohan",
+        "Super Saiyan Gohan (Teen)",
+        "Gohan"
+      ]
     },
     {
       "id": 100066,
@@ -4939,7 +5171,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Cabba",
+        "Cabba"
+      ]
     },
     {
       "id": 100304,
@@ -4950,7 +5185,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "1st Form Frieza"
+      ]
     },
     {
       "id": 100125,
@@ -4975,7 +5212,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Vegeta"
       ]
     },
     {
@@ -4987,7 +5225,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Janemba"
+      ]
     },
     {
       "id": 100077,
@@ -4999,7 +5239,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan Vegeta"
       ]
     },
     {
@@ -5011,7 +5252,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Vegito"
+      ]
     },
     {
       "id": 100277,
@@ -5022,7 +5266,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly: Cheelai (Assist)",
+        "Broly"
+      ]
     },
     {
       "id": 100206,
@@ -5047,7 +5294,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #21",
+        "Android #21: Evil"
+      ]
     },
     {
       "id": 100152,
@@ -5058,7 +5308,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Chilled"
+      ]
     },
     {
       "id": 100219,
@@ -5069,7 +5321,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Final Form Frieza",
+        "Final Form Frieza: Full Power"
+      ]
     },
     {
       "id": 100265,
@@ -5081,7 +5336,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Vegeta"
       ]
     },
     {
@@ -5094,7 +5350,9 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku Black",
+        "Super Saiyan Rosé Goku Black"
       ]
     },
     {
@@ -5106,7 +5364,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Trunks",
+        "Super Trunks"
+      ]
     },
     {
       "id": 100242,
@@ -5117,7 +5378,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #13",
+        "Fusion Android #13"
+      ]
     },
     {
       "id": 100349,
@@ -5128,7 +5392,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Great Saiyaman 1",
+        "Great Saiyaman 1 & 2 (Assist)"
+      ]
     },
     {
       "id": 100217,
@@ -5140,7 +5407,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Vegeta"
       ]
     },
     {
@@ -5152,7 +5420,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Saiyan God SS Vegito"
+      ]
     },
     {
       "id": 100004,
@@ -5189,7 +5460,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gohan",
+        "Ultimate Gohan"
+      ]
     },
     {
       "id": 100346,
@@ -5213,7 +5487,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gohan"
+      ]
     },
     {
       "id": 100075,
@@ -5238,7 +5514,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Namekian Lord Slug"
+      ]
     },
     {
       "id": 100322,
@@ -5250,7 +5528,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Full Power Saiyan 4 Goku"
       ]
     },
     {
@@ -5262,7 +5541,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Baby 2"
+      ]
     },
     {
       "id": 100388,
@@ -5274,7 +5555,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 4 Goku"
       ]
     },
     {
@@ -5287,7 +5569,9 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku Black",
+        "Super Saiyan Rosé Goku Black"
       ]
     },
     {
@@ -5300,7 +5584,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan God SS Goku"
       ]
     },
     {
@@ -5312,7 +5597,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Bergamo"
+      ]
     },
     {
       "id": 100340,
@@ -5323,7 +5610,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Jiren"
+      ]
     },
     {
       "id": 1003100,
@@ -5367,7 +5656,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #18"
+      ]
     },
     {
       "id": 100185,
@@ -5379,7 +5670,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God Vegeta"
       ]
     },
     {
@@ -5391,7 +5683,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Caulifla",
+        "Caulifla"
+      ]
     },
     {
       "id": 100320,
@@ -5402,7 +5697,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Zamasu",
+        "Fusion Zamasu"
+      ]
     },
     {
       "id": 100128,
@@ -5413,7 +5711,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Kale (Berserk)",
+        "Kale"
+      ]
     },
     {
       "id": 100038,
@@ -5424,7 +5725,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Pan"
+      ]
     },
     {
       "id": 20900,
@@ -5479,7 +5782,9 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Kefla"
+      ]
     },
     {
       "id": 2019000,
@@ -5512,7 +5817,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Android #21",
+        "Android #21: Good"
+      ]
     },
     {
       "id": 2016000,
@@ -5567,7 +5875,10 @@
       "endsAt": "2023-01-18T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Vegito"
+      ]
     },
     {
       "id": 20500,
@@ -5809,7 +6120,9 @@
       "endsAt": "2022-12-02T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gohan"
+      ]
     },
     {
       "id": 2018700,
@@ -5820,7 +6133,9 @@
       "endsAt": "2022-10-28T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler"
+      ]
     },
     {
       "id": 2019200,
@@ -5831,7 +6146,9 @@
       "endsAt": "2022-10-18T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 20000,
@@ -5864,7 +6181,9 @@
       "endsAt": "2022-10-20T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler"
+      ]
     },
     {
       "id": 2018600,
@@ -5875,7 +6194,9 @@
       "endsAt": "2022-10-12T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler"
+      ]
     },
     {
       "id": 2017900,
@@ -6128,7 +6449,9 @@
       "endsAt": "2022-06-21T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2017100,
@@ -6725,7 +7048,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -6737,7 +7061,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler",
+        "Final Form Cooler"
+      ]
     },
     {
       "id": 100164,
@@ -6748,7 +7075,10 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan Broly",
+        "Broly"
+      ]
     },
     {
       "id": 1002200,
@@ -7155,7 +7485,9 @@
       "endsAt": "2022-01-05T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gotenks"
+      ]
     },
     {
       "id": 2012600,
@@ -7166,7 +7498,9 @@
       "endsAt": "2021-08-04T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Boujack"
+      ]
     },
     {
       "id": 2012700,
@@ -7177,7 +7511,9 @@
       "endsAt": "2021-08-08T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Boujack"
+      ]
     },
     {
       "id": 2012800,
@@ -7188,7 +7524,9 @@
       "endsAt": "2021-08-08T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Boujack"
+      ]
     },
     {
       "id": 15100,
@@ -7320,7 +7658,10 @@
       "endsAt": "2021-11-10T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Trunks",
+        "Trunks (Youth)"
+      ]
     },
     {
       "id": 1001600,
@@ -7398,7 +7739,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Piccolo"
+        "Piccolo",
+        "Fused with Kami Piccolo"
       ]
     },
     {
@@ -7532,7 +7874,8 @@
       "isPermanent": false,
       "isStepUp": true,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -7692,7 +8035,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Legendary Super Saiyan Broly",
+        "Super Saiyan Broly",
+        "Broly"
+      ]
     },
     {
       "id": 100216,
@@ -7704,7 +8051,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan God SS Goku"
       ]
     },
     {
@@ -7716,7 +8064,11 @@
       "endsAt": "2029-12-31T15:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Legendary Super Saiyan Broly",
+        "Super Saiyan Broly",
+        "Broly"
+      ]
     },
     {
       "id": 1300110,
@@ -7839,7 +8191,9 @@
       "endsAt": "2021-01-26T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta"
+      ]
     },
     {
       "id": 2009900,
@@ -7850,7 +8204,9 @@
       "endsAt": "2021-01-30T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta"
+      ]
     },
     {
       "id": 2010000,
@@ -7861,7 +8217,9 @@
       "endsAt": "2021-01-24T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Gogeta"
+      ]
     },
     {
       "id": 2010100,
@@ -7872,7 +8230,9 @@
       "endsAt": "2021-01-26T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2010200,
@@ -7883,7 +8243,9 @@
       "endsAt": "2021-01-30T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2010300,
@@ -7894,7 +8256,9 @@
       "endsAt": "2021-01-24T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2009700,
@@ -7983,7 +8347,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku (Youth)"
       ]
     },
     {
@@ -8195,7 +8560,11 @@
       "endsAt": "2020-09-24T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Gohan (Youth)",
+        "Gohan (Youth)",
+        "Gohan"
+      ]
     },
     {
       "id": 1000040,
@@ -8217,7 +8586,11 @@
       "endsAt": "2020-09-22T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": true,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Gohan (Youth)",
+        "Gohan (Youth)",
+        "Gohan"
+      ]
     },
     {
       "id": 2008000,
@@ -8285,7 +8658,9 @@
       "endsAt": "2020-08-27T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Majin Buu: Good"
+      ]
     },
     {
       "id": 11600,
@@ -8362,7 +8737,11 @@
       "endsAt": "2020-08-13T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Legendary Super Saiyan Broly",
+        "Super Saiyan Broly",
+        "Broly"
+      ]
     },
     {
       "id": 11100,
@@ -8473,7 +8852,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Goku Black"
       ]
     },
     {
@@ -8730,7 +9110,9 @@
       "endsAt": "2020-06-16T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "God of Destruction Beerus"
+      ]
     },
     {
       "id": 1300100,
@@ -8752,7 +9134,9 @@
       "endsAt": "2020-06-02T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "God of Destruction Beerus"
+      ]
     },
     {
       "id": 10000,
@@ -8821,7 +9205,8 @@
       "isPermanent": false,
       "isStepUp": true,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Vegeta"
       ]
     },
     {
@@ -8833,7 +9218,10 @@
       "endsAt": "2020-06-28T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Cooler",
+        "Final Form Cooler"
+      ]
     },
     {
       "id": 1000600,
@@ -9232,7 +9620,8 @@
       "isPermanent": false,
       "isStepUp": true,
       "guessedFeaturedCharacterNames": [
-        "Vegeta"
+        "Vegeta",
+        "Super Saiyan God SS Vegeta"
       ]
     },
     {
@@ -9289,7 +9678,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -9346,7 +9736,8 @@
       "isPermanent": false,
       "isStepUp": false,
       "guessedFeaturedCharacterNames": [
-        "Goku"
+        "Goku",
+        "Super Saiyan 3 Goku"
       ]
     },
     {
@@ -9651,7 +10042,9 @@
       "endsAt": "2020-05-31T02:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "God of Destruction Beerus"
+      ]
     },
     {
       "id": 1200200,
@@ -9662,7 +10055,11 @@
       "endsAt": "2020-05-31T02:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Super Saiyan 2 Gohan (Youth)",
+        "Gohan (Youth)",
+        "Gohan"
+      ]
     },
     {
       "id": 1200300,
@@ -9673,7 +10070,10 @@
       "endsAt": "2020-05-31T02:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Goten (Kid)",
+        "Super Saiyan Goten (Kid)"
+      ]
     },
     {
       "id": 1200400,
@@ -9684,7 +10084,10 @@
       "endsAt": "2020-05-31T02:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Vegito",
+        "Super Vegito"
+      ]
     },
     {
       "id": 2004000,
@@ -10014,7 +10417,9 @@
       "endsAt": "2019-10-01T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Mai"
+      ]
     },
     {
       "id": 3400,
@@ -10025,7 +10430,9 @@
       "endsAt": "2019-09-17T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Mai"
+      ]
     },
     {
       "id": 3500,
@@ -10036,7 +10443,9 @@
       "endsAt": "2019-10-13T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Mai"
+      ]
     },
     {
       "id": 2780,
@@ -10875,7 +11284,9 @@
       "endsAt": "2019-04-17T02:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2360,
@@ -10886,7 +11297,9 @@
       "endsAt": "2019-04-02T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2370,
@@ -11108,7 +11521,9 @@
       "endsAt": "2019-03-11T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2250,
@@ -11119,7 +11534,9 @@
       "endsAt": "2019-02-26T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2260,
@@ -11350,7 +11767,9 @@
       "endsAt": "2019-01-31T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2090,
@@ -11361,7 +11780,9 @@
       "endsAt": "2018-12-17T06:00:00.000Z",
       "isPermanent": false,
       "isStepUp": false,
-      "guessedFeaturedCharacterNames": []
+      "guessedFeaturedCharacterNames": [
+        "Broly"
+      ]
     },
     {
       "id": 2040,
@@ -11694,5 +12115,5 @@
       "guessedFeaturedCharacterNames": []
     }
   ],
-  "fetchedAt": "2026-07-29T14:00:42.102Z"
+  "fetchedAt": "2026-07-30T11:26:06.298Z"
 }

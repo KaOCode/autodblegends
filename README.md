@@ -25,14 +25,20 @@ Blöcke ausliefert – kein Headless-Browser nötig, nur `fetch` + Regex-Extrakt
 
 ### Datenfluss
 
-1. `npm run scrape` (Root) → schreibt `data/characters.json`, `data/events.json`,
-   `data/banners.json` und pusht optional zu Supabase (falls `SUPABASE_URL` +
-   `SUPABASE_SERVICE_ROLE_KEY` gesetzt sind, siehe `apps/scraper/.env.example`).
+1. `npm run scrape` (Root) → schreibt `data/characters.json` (voller Roster,
+   ~780 Charaktere bei `SCRAPE_LIMIT=0`), `data/events.json` (inkl.
+   Stage-Details für aktive/anstehende Events, siehe unten) und
+   `data/banners.json`; pusht optional zu Supabase (falls `SUPABASE_URL` +
+   `SUPABASE_SECRET_KEY` gesetzt sind, siehe `apps/scraper/.env.example`).
 2. `apps/web`'s `predev`/`prebuild`-Skript kopiert `data/*.json` nach
    `apps/web/public/data/`, von wo die App sie zur Laufzeit per `fetch` lädt
-   (`src/lib/useGameData.ts`). Für "immer top aktuell" den Scraper regelmäßig
+   (`store/gameDataSlice.ts`). Für "immer top aktuell" den Scraper regelmäßig
    laufen lassen (z.B. Cron/GitHub Action) und/oder auf den Supabase-Cache
    umstellen.
+3. Event-Stage-Details (`fetchEventDetail` in `apps/scraper/src/dblegends.ts`,
+   Parsing mit `cheerio`) werden nur für Events geholt, die nicht `expired`
+   sind – ein voller Scrape aller ~1200 historischen Events wäre unnötig
+   teuer. Angezeigt werden sie im `EventModal` beim Klick auf ein Event.
 
 ### Team-Optimizer (`packages/shared/src/optimizer.ts`)
 
@@ -135,14 +141,24 @@ zuverlässig erreichbar war. Die Komponenten sind API-kompatibel benannt und
 können bei Bedarf 1:1 durch echte animate-ui.com-Komponenten ersetzt werden
 (`npx shadcn add ...`).
 
-### Sorare-artige Detailkarte (4s Hover)
+### Sorare-artige Detailkarte (4s Hover) & Klick-Modals
 
 `useLongHover` (`src/lib/useLongHover.ts`) feuert erst nach 4 Sekunden
-Hover/Tap-and-Hold. `CharacterHoverCard` positioniert dann per Portal die
-`CharacterDetailCard` neben der Karte: großes Artwork oben, farbiger
-Foil-Rand je nach Element, darunter Zugehörigkeit (Tags) sowie Leader-
-Skill/Main-Ability/Z-Abilities im Volltext – angelehnt an das Kartenlayout
-von Sorare.com, mit einem animierten Hologramm-Glanz beim Erscheinen.
+Hover/Tap-and-Hold und zeigt per Portal eine schnelle, read-only
+`CharacterDetailCard`-Vorschau neben der Karte: großes Artwork, farbiger
+Foil-Rand je nach Element, Zugehörigkeit (Tags) sowie Leader-Skill/Main-
+Ability/Z-Abilities im Volltext – angelehnt an das Kartenlayout von
+Sorare.com, mit animiertem Hologramm-Glanz beim Erscheinen.
+
+**Klick** auf eine Charakter-Karte (Inventar & Team Builder) öffnet
+zusätzlich `CharacterModal.tsx` – die volle Detailkarte plus einen klaren
+Inventar-Editor (Sterne, Level, Kopien, Z-Awakened, Hinzufügen/Entfernen).
+Das ersetzt das alte Inline-Stern-Klicken direkt in der Kartenübersicht, was
+in der dichten Liste schnell unpräzise/fummelig wurde.
+
+**Klick** auf ein Event (Events & Banner) öffnet `EventModal.tsx` mit
+Stage-für-Stage-Details: Gegner, Level, EXP/Zeni, Erstclear-Drops und
+Challenges (aus den neu gescrapten `/event/{id}`-Seiten, siehe unten).
 
 ### PWA
 

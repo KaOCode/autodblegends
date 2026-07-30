@@ -1,17 +1,16 @@
 import { useMemo, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { upsertInventoryEntry } from "../store/profileSlice";
-import { StarPicker } from "../components/StarPicker";
+import { useAppSelector } from "../store/hooks";
 import { CharacterCard } from "../components/CharacterCard";
 import { CharacterHoverCard } from "../components/CharacterHoverCard";
+import { CharacterModal } from "../components/CharacterModal";
 
 export function InventoryPage() {
-  const dispatch = useAppDispatch();
   const characters = useAppSelector((s) => s.gameData.characters);
   const loading = useAppSelector((s) => s.gameData.loading);
   const inventory = useAppSelector((s) => s.profile.inventory);
   const [search, setSearch] = useState("");
   const [ownedOnly, setOwnedOnly] = useState(false);
+  const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
 
   const inventoryByChar = useMemo(() => new Map(inventory.map((e) => [e.characterId, e])), [inventory]);
 
@@ -23,6 +22,8 @@ export function InventoryPage() {
       return true;
     });
   }, [characters, search, ownedOnly, inventoryByChar]);
+
+  const openCharacter = openCharacterId != null ? characters.find((c) => c.id === openCharacterId) : undefined;
 
   return (
     <div>
@@ -50,36 +51,36 @@ export function InventoryPage() {
         </div>
       )}
 
-      <p className="mb-3 text-xs text-white/30">Tipp: 4 Sekunden über einer Karte verweilen zeigt Fähigkeiten &amp; Zugehörigkeit.</p>
+      <p className="mb-3 text-xs text-white/30">
+        Klick auf eine Karte, um sie zum Inventar hinzuzufügen oder zu bearbeiten. 4 Sekunden Hover zeigt eine
+        Schnellvorschau.
+      </p>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((c) => {
           const entry = inventoryByChar.get(c.id);
           return (
-            <CharacterHoverCard key={c.id} character={c}>
+            <CharacterHoverCard key={c.id} character={c} onClick={(char) => setOpenCharacterId(char.id)}>
               <CharacterCard
                 character={c}
                 right={
-                  <StarPicker
-                    value={entry?.stars ?? 0}
-                    onChange={(stars) =>
-                      dispatch(
-                        upsertInventoryEntry({
-                          characterId: c.id,
-                          stars,
-                          level: entry?.level ?? 1,
-                          isZAwakened: entry?.isZAwakened ?? false,
-                          copies: stars > 0 ? Math.max(1, entry?.copies ?? 1) : 0,
-                        }),
-                      )
-                    }
-                  />
+                  entry ? (
+                    <span className="shrink-0 rounded-full bg-amber-400/20 px-2 py-1 text-xs font-semibold text-amber-300">
+                      ★ {entry.stars}
+                    </span>
+                  ) : (
+                    <span className="shrink-0 rounded-full border border-dashed border-white/20 px-2 py-1 text-xs text-white/30">
+                      + hinzufügen
+                    </span>
+                  )
                 }
               />
             </CharacterHoverCard>
           );
         })}
       </div>
+
+      {openCharacter && <CharacterModal character={openCharacter} onClose={() => setOpenCharacterId(null)} />}
     </div>
   );
 }

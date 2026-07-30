@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { saveTeam } from "../store/profileSlice";
 import { CharacterCard } from "../components/CharacterCard";
 import { CharacterHoverCard } from "../components/CharacterHoverCard";
+import { CharacterModal } from "../components/CharacterModal";
 import { StaggerReveal } from "../components/animate-ui/StaggerReveal";
 import { SlidingNumber } from "../components/animate-ui/SlidingNumber";
 
@@ -22,6 +23,7 @@ export function TeamBuilderPage() {
   const [eventTagHint, setEventTagHint] = useState("");
   const [result, setResult] = useState<BuiltTeam | null>(null);
   const [teamName, setTeamName] = useState("");
+  const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
 
   const owned: OwnedCharacter[] = useMemo(() => {
     const charById = new Map(characters.map((c) => [c.id, c]));
@@ -124,7 +126,11 @@ export function TeamBuilderPage() {
                 const character = charById.get(slot.characterId);
                 if (!character) return null;
                 return (
-                  <CharacterHoverCard key={slot.characterId} character={character}>
+                  <CharacterHoverCard
+                    key={slot.characterId}
+                    character={character}
+                    onClick={(char) => setOpenCharacterId(char.id)}
+                  >
                     <CharacterCard character={character} isLeader={slot.isLeader} />
                   </CharacterHoverCard>
                 );
@@ -156,6 +162,10 @@ export function TeamBuilderPage() {
             </ul>
           </div>
         </div>
+      )}
+
+      {openCharacterId != null && charById.get(openCharacterId) && (
+        <CharacterModal character={charById.get(openCharacterId)!} onClose={() => setOpenCharacterId(null)} />
       )}
     </div>
   );

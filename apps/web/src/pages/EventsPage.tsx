@@ -1,7 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Chip } from "@heroui/react";
 import { matchEventToOwnedCharacters, rankBannerPriority, type OwnedCharacter } from "@autodbl/shared";
 import { useAppSelector } from "../store/hooks";
+import { EventModal } from "../components/EventModal";
+import { CharacterModal } from "../components/CharacterModal";
 
 const PRIORITY_STYLE: Record<string, string> = {
   high: "border-emerald-500/50 bg-emerald-500/10 text-emerald-300",
@@ -14,6 +16,8 @@ export function EventsPage() {
   const events = useAppSelector((s) => s.gameData.events);
   const banners = useAppSelector((s) => s.gameData.banners);
   const inventory = useAppSelector((s) => s.profile.inventory);
+  const [openEventId, setOpenEventId] = useState<number | null>(null);
+  const [openCharacterId, setOpenCharacterId] = useState<number | null>(null);
 
   const owned: OwnedCharacter[] = useMemo(() => {
     const charById = new Map(characters.map((c) => [c.id, c]));
@@ -39,27 +43,51 @@ export function EventsPage() {
       .slice(0, 30);
   }, [banners, characters, owned]);
 
+  const openEvent = openEventId != null ? events.find((e) => e.id === openEventId) : undefined;
+  const openCharacter = openCharacterId != null ? characters.find((c) => c.id === openCharacterId) : undefined;
+
   return (
     <div className="space-y-10">
       <section>
         <h2 className="mb-3 text-lg font-semibold text-white">Aktive Events ({activeEvents.length})</h2>
+        <p className="mb-3 text-xs text-white/30">Klick auf ein Event für Stages, Gegner &amp; Belohnungen.</p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {activeEvents.map((event) => {
             const matches = matchEventToOwnedCharacters(event, owned);
             return (
-              <div key={event.id} className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <button
+                key={event.id}
+                type="button"
+                onClick={() => setOpenEventId(event.id)}
+                className="rounded-xl border border-white/10 bg-white/5 p-4 text-left transition-colors hover:border-amber-400/40 hover:bg-white/10"
+              >
                 <p className="text-sm font-semibold text-white">{event.name}</p>
                 <p className="text-xs text-white/40">
                   bis {new Date(event.endsAt).toLocaleDateString("de-DE")}
                 </p>
                 {matches.length > 0 ? (
                   <p className="mt-2 text-xs text-emerald-300">
-                    Du besitzt passende Charaktere: {matches.map((m) => m.character.name).join(", ")}
+                    Du besitzt passende Charaktere:{" "}
+                    {matches.map((m, i) => (
+                      <span key={m.character.id}>
+                        {i > 0 && ", "}
+                        <span
+                          role="link"
+                          className="underline decoration-dotted hover:text-emerald-200"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenCharacterId(m.character.id);
+                          }}
+                        >
+                          {m.character.name}
+                        </span>
+                      </span>
+                    ))}
                   </p>
                 ) : (
                   <p className="mt-2 text-xs text-white/30">Kein direkter Charakter-Treffer erkannt.</p>
                 )}
-              </div>
+              </button>
             );
           })}
           {activeEvents.length === 0 && (
@@ -91,6 +119,9 @@ export function EventsPage() {
           {bannerRanking.length === 0 && <p className="text-sm text-white/40">Keine Banner-Daten geladen.</p>}
         </div>
       </section>
+
+      {openEvent && <EventModal event={openEvent} onClose={() => setOpenEventId(null)} />}
+      {openCharacter && <CharacterModal character={openCharacter} onClose={() => setOpenCharacterId(null)} />}
     </div>
   );
 }

@@ -44,6 +44,37 @@ export interface CharacterDb {
   fetchedAt: string;
 }
 
+export interface EventEnemy {
+  characterId: number | null;
+  name: string;
+  level: number | null;
+}
+
+export interface EventDrop {
+  name: string;
+  qty: string;
+}
+
+export interface EventChallenge {
+  text: string;
+  reward: EventDrop | null;
+}
+
+export interface EventStage {
+  name: string;
+  stamina: number | null;
+  enemies: EventEnemy[];
+  exp: string | null;
+  zeni: string | null;
+  firstClearDrops: EventDrop[];
+  challenges: EventChallenge[];
+}
+
+export interface EventDifficulty {
+  index: number;
+  stages: EventStage[];
+}
+
 export interface DblEvent {
   id: number;
   name: string;
@@ -52,6 +83,9 @@ export interface DblEvent {
   endsAt: string;
   isPermanent: boolean;
   status: "active" | "upcoming" | "expired";
+  /** Only populated for active/upcoming events (see apps/scraper) - fetching
+   * stage detail for all ~1000+ historical events would be wasteful. */
+  difficulties?: EventDifficulty[];
 }
 
 export interface Banner {
