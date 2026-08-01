@@ -27,63 +27,65 @@ export function Layout() {
 
   return (
     <div className="mx-auto flex min-h-svh max-w-6xl flex-col px-4 pb-16">
-      <header className="flex flex-wrap items-center justify-between gap-4 py-6">
+      <header className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-white">
             Auto<span className="text-amber-400">DBL</span>egends
           </h1>
           <p className="text-xs text-white/50">Automatischer Team Builder für Dragon Ball Legends</p>
         </div>
-        <nav className="flex gap-1 rounded-full border border-white/10 bg-white/5 p-1">
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              className={({ isActive }) =>
-                `rounded-full px-4 py-1.5 text-sm transition-colors ${
-                  isActive ? "bg-amber-400 text-black font-semibold" : "text-white/70 hover:text-white"
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="relative">
-          {!isCloudSyncEnabled ? (
-            <span className="text-xs text-white/40">Nur lokal gespeichert</span>
-          ) : loading ? (
-            <span className="text-xs text-white/40">…</span>
-          ) : session ? (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-white/60">{session.user.email}</span>
-              <Button size="sm" variant="outline" onPress={() => void dispatch(signOut())}>
-                Abmelden
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <nav className="flex flex-wrap gap-1 rounded-full border border-white/10 bg-white/5 p-1">
+            {NAV_ITEMS.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                className={({ isActive }) =>
+                  `rounded-full px-4 py-1.5 text-sm transition-colors ${
+                    isActive ? "bg-amber-400 text-black font-semibold" : "text-white/70 hover:text-white"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+          <div className="relative self-end sm:self-auto">
+            {!isCloudSyncEnabled ? (
+              <span className="text-xs text-white/40">Nur lokal gespeichert</span>
+            ) : loading ? (
+              <span className="text-xs text-white/40">…</span>
+            ) : session ? (
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-white/60">{session.user.email}</span>
+                <Button size="sm" variant="outline" onPress={() => void dispatch(signOut())}>
+                  Abmelden
+                </Button>
+              </div>
+            ) : (
+              <Button size="sm" variant="outline" onPress={() => setShowAuth((s) => !s)}>
+                Anmelden zum Speichern
               </Button>
-            </div>
-          ) : (
-            <Button size="sm" variant="outline" onPress={() => setShowAuth((s) => !s)}>
-              Anmelden zum Speichern
-            </Button>
-          )}
-          {showAuth && !session && (
-            <div className="absolute right-0 z-10 mt-2 w-72 rounded-xl border border-white/10 bg-[#171c2e] p-3 shadow-xl">
-              <p className="mb-2 text-xs text-white/60">
-                Optional: mit E-Mail anmelden, um dein Inventar & Teams geräteübergreifend zu behalten.
-              </p>
-              <input
-                className="mb-2 w-full rounded-md border border-white/10 bg-black/30 px-2 py-1 text-sm text-white outline-none"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Button size="sm" fullWidth onPress={() => void handleSignIn()}>
-                Magic Link senden
-              </Button>
-              {authMessage && <p className="mt-2 text-xs text-white/60">{authMessage}</p>}
-            </div>
-          )}
+            )}
+            {showAuth && !session && (
+              <div className="absolute right-0 top-full z-10 mt-2 w-[min(18rem,calc(100vw-2rem))] rounded-xl border border-white/10 bg-[#171c2e] p-3 shadow-xl">
+                <p className="mb-2 text-xs text-white/60">
+                  Optional: mit E-Mail anmelden, um dein Inventar & Teams geräteübergreifend zu behalten.
+                </p>
+                <input
+                  className="mb-2 w-full rounded-md border border-white/10 bg-black/30 px-2 py-1 text-sm text-white outline-none"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Button size="sm" fullWidth onPress={() => void handleSignIn()}>
+                  Magic Link senden
+                </Button>
+                {authMessage && <p className="mt-2 text-xs text-white/60">{authMessage}</p>}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
